@@ -28,3 +28,5 @@ rules:
   - {id: 25, title: Cheapest tool first, level: should, enforce: guidance}
   - {id: 26, title: Security first, level: must, enforce: guidance}
   - {id: 27, title: Enforcement and accountability, level: must, enforce: hook}
+  - {id: 28, title: Lean prompt crafting, level: should, enforce: guidance}
+  - {id: 29, title: Transparency, level: must, enforce: hook}

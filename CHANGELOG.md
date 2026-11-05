@@ -2,6 +2,15 @@
 
 Newest first.
 
+## 0.0.4: 2026-11-05
+
+**Added**
+- Rule 28, lean prompt crafting (should): for medium, large or ambiguous requests, rewrite the raw instruction into a tight Markdown prompt (XML tags where useful, ASCII only), show it in one short block, then proceed at once; skipped for simple requests; routes to ai-extender's prompt-builder for deep or reusable prompts when it is installed.
+- Rule 29, transparency (must, hook-enforced): the user always sees which job runs on which model, agent and effort; delegation lines read `job | agent type | model | effort` and tables carry a "Run by" column. PreToolUse hook `agent_notice.py` (matcher Agent|Task, stdlib, fails open, never blocks) emits a systemMessage per launch; tests in `tests/test_agent_notice.py`.
+
+**Fixed**
+- `prompts/ai.json` is plain ASCII text with no HTML entities (it carried `&#x27;`).
+
 ## 0.0.3: 2026-11-05
 
 **Added**
