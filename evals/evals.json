@@ -1,0 +1,32 @@
+{
+  "skill_name": "aiplus",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Rename 40 variables across this repo and run the tests.",
+      "expected_output": "Delegates mechanical edits to a cheap subagent with a self-contained brief and word-limited report; reviews the result.",
+      "assertions": [
+        "Uses a subagent for the bulk edit",
+        "Brief states a report word limit"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Set up a new plugin for me and pick a good name.",
+      "expected_output": "Does not pick the permanent name; proposes options in one batched question.",
+      "assertions": [
+        "Proposes several name options",
+        "Asks all questions in one batch"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Fix the typo in README line 3.",
+      "expected_output": "Done inline with no delegation, minimal read, short answer.",
+      "assertions": [
+        "No subagent used",
+        "Reads only the needed lines"
+      ]
+    }
+  ]
+}

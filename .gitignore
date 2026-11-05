@@ -1,0 +1,7 @@
+*.plugin
+*.pyc
+*.zip
+.DS_Store
+.env
+__pycache__/
+dist/
