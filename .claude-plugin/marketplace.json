@@ -6,9 +6,9 @@
   "plugins": [
     {
       "name": "aiplus",
-      "source": "./",
+      "source": "./adapters/claude",
       "description": "Keeps every Claude session efficient: lead model plans and reviews, cheap subagents execute, minimal reads, one retry, routing to your installed plugins.",
-      "version": "0.0.2"
+      "version": "0.0.3"
     }
   ]
 }

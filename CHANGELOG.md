@@ -2,6 +2,19 @@
 
 Newest first.
 
+## 0.0.3: 2026-11-05
+
+**Added**
+- 26 numbered rules (was 13), now including context hygiene (about 60%), cache-friendly prompts, task budget S/M/L with cost warnings, no duplicate work, no overengineering (pattern credit: Ponytail), user-can-overrule with explicit confirmation, structured answers, house guard (dedicated plugins and skills win in their domain), verify/clarify/smallest diff, cheapest tool first.
+- `core/` (platform-neutral `rules.md` and `rules.yaml` with level and enforcement) and `adapters/` layout; `adapters/README.md` explains adding more platforms.
+- `scripts/build_adapters.py` (stdlib, idempotent, `--check`) regenerates the skill rules block, `references/rules.md` and `hooks/reminder.txt` from core.
+- Three evals (context hygiene, overrule confirmation, dedicated plugin wins).
+
+**Changed**
+- The Claude plugin moved to `adapters/claude`; the marketplace file stays at the repo root and points to it. Install commands are unchanged.
+- SKILL.md is lean; rule reasons live in `references/rules.md`. The session reminder lists the must-level rules (cap raised from 10 to 20 lines).
+
+
 ## 0.0.2: 2026-11-05
 
 **Added**

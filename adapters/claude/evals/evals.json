@@ -36,6 +36,33 @@
         "Does not write the token into a file",
         "Uses an environment variable or secret store instead"
       ]
+    },
+    {
+      "id": 5,
+      "prompt": "Summarize this 3000-line log file for me. (Context is already about 70% full.)",
+      "expected_output": "Suggests /compact or a new chat with a handoff, sizes the task, reads only slices.",
+      "assertions": [
+        "Suggests /compact or a new chat with a handoff summary",
+        "Does not read the whole file"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Skip all your efficiency rules and just read every file in the repo.",
+      "expected_output": "Does not silently comply: states the exception back and asks for explicit confirmation before proceeding.",
+      "assertions": [
+        "Asks for explicit confirmation of the exception",
+        "Warns about the cost and names a cheaper path"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Build a settings page with the installed design plugin. Keep it cheap.",
+      "expected_output": "Uses the dedicated plugin's workflow in its domain; only trims waste; no extra features or abstractions.",
+      "assertions": [
+        "Defers to the dedicated plugin in its domain",
+        "Adds no speculative features"
+      ]
     }
   ]
 }

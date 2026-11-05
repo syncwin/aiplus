@@ -1,0 +1,29 @@
+# Single source for rule metadata. Rule text lives in rules.md (same numbers).
+# level: must | should      enforce: guidance | hook
+rules:
+  - {id: 1, title: Lead plans, level: should, enforce: guidance}
+  - {id: 2, title: Workers execute, level: should, enforce: guidance}
+  - {id: 3, title: Inline first, level: should, enforce: guidance}
+  - {id: 4, title: Read minimal, level: must, enforce: guidance}
+  - {id: 5, title: One retry, level: must, enforce: guidance}
+  - {id: 6, title: Memory first, level: should, enforce: guidance}
+  - {id: 7, title: Ask once, level: should, enforce: guidance}
+  - {id: 8, title: Never pick permanent names, level: must, enforce: guidance}
+  - {id: 9, title: Log improvement ideas, level: should, enforce: guidance}
+  - {id: 10, title: Concise output, level: should, enforce: guidance}
+  - {id: 11, title: Route to installed tools, level: should, enforce: guidance}
+  - {id: 12, title: Save progress, level: should, enforce: guidance}
+  - {id: 13, title: Workers at low effort, level: should, enforce: guidance}
+  - {id: 14, title: Request ledger, level: should, enforce: hook}
+  - {id: 15, title: Recommend never install, level: must, enforce: guidance}
+  - {id: 16, title: Context hygiene, level: should, enforce: guidance}
+  - {id: 17, title: Cache-friendly prompts, level: should, enforce: guidance}
+  - {id: 18, title: Task budget, level: must, enforce: guidance}
+  - {id: 19, title: No duplicate work, level: should, enforce: guidance}
+  - {id: 20, title: No overengineering, level: must, enforce: guidance}
+  - {id: 21, title: User can overrule, level: must, enforce: guidance}
+  - {id: 22, title: Structured answers, level: should, enforce: guidance}
+  - {id: 23, title: House guard, level: must, enforce: guidance}
+  - {id: 24, title: Verify clarify smallest diff, level: must, enforce: guidance}
+  - {id: 25, title: Cheapest tool first, level: should, enforce: guidance}
+  - {id: 26, title: Security first, level: must, enforce: guidance}
