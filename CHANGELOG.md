@@ -2,6 +2,15 @@
 
 Newest first.
 
+## 0.0.5: 2026-11-06
+
+**Added**
+- Rule 31, surface awareness (must): AI+ detects its surface from the tools it has (Agent tool, hooks, Bash/files) and applies only what that surface supports; never claims delegation, hooks or files where unavailable; on chat and mobile it falls back to guidance only. New `core/surfaces.md` (capability table for terminal, desktop Code tab, cloud/mobile Code, Cowork, chat; sources; dated 2026-11-06), shipped as `references/surfaces.md`.
+- Evals 8-10: ambiguous request expects closed, options-based questions; prompt rewrite invents nothing; chat/mobile surface falls back to guidance.
+
+**Changed**
+- Rule 28 rewritten to the exact standard: fluff-free, tight, non-redundant Markdown prompt; adds nothing beyond the request or its directly supporting context; never removes, weakens or changes any requirement or intent; removes only redundancy; improves structure (headings, bullets, numbered lists, XML tags); ASCII only; unclear points get specific closed questions with concrete options and a default, never vague ones.
+
 ## 0.0.4: 2026-11-05
 
 **Added**

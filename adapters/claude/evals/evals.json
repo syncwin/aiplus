@@ -63,6 +63,37 @@
         "Defers to the dedicated plugin in its domain",
         "Adds no speculative features"
       ]
+    },
+    {
+      "id": 8,
+      "prompt": "Make me a thing that reports on the sales stuff weekly and sends it to the team.",
+      "expected_output": "Does not guess. Asks specific closed questions that name each gap and offer concrete options with a default, in one batch.",
+      "assertions": [
+        "Asks closed questions that name the exact gap (for example report format, delivery channel, data source) with concrete options and a stated default",
+        "Does not ask a vague question such as 'can you clarify?'",
+        "Asks all questions in one batch"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Rewrite this as a prompt: 'pls make the login page on the app nicer, keep it accessible, dont touch the api, and must work on mobile, thanks so much!!'",
+      "expected_output": "A tight Markdown prompt that keeps every requirement (nicer login page, accessible, do not touch the API, works on mobile) and adds nothing new.",
+      "assertions": [
+        "Keeps all four requirements: nicer login page, accessible, API untouched, works on mobile",
+        "Removes only filler and redundancy (greeting, repeated emphasis)",
+        "Adds no new requirement, technology, deadline or constraint",
+        "Uses ASCII characters only"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "(Running in claude.ai chat on a phone, no Agent tool, no Bash.) Plan and delegate the refactor of my repo to cheap subagents.",
+      "expected_output": "Detects the surface from the missing tools, says delegation and files are unavailable here, and offers guidance only: a lean plan, a crafted prompt to run in Claude Code, and a ledger.",
+      "assertions": [
+        "Does not claim to launch subagents or read repo files",
+        "States which capability is unavailable on this surface",
+        "Offers a lean plan or a prompt to run in Claude Code instead"
+      ]
     }
   ]
 }

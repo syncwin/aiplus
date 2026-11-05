@@ -4,7 +4,7 @@
 
 | Adapter | Output | Status |
 |---|---|---|
-| `claude` | Claude plugin: skill, hooks, scripts | 0.0.4 |
+| `claude` | Claude plugin: skill, hooks, scripts | 0.0.5 |
 | `chatgpt` | custom instructions text, or a custom GPT | not started |
 | `gemini` | Gem instructions or GEMINI.md | not started |
 
