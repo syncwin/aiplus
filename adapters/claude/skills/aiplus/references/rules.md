@@ -28,3 +28,4 @@ Why behind each rule in SKILL.md, with its level and enforcement. Generated from
 24. **Verify, clarify, smallest diff.** rework is the largest hidden cost. (must, guidance)
 25. **Cheapest tool first.** deterministic tools are faster, cheaper and repeatable. (should, guidance)
 26. **Security first.** a leak or a regression costs far more than any saving. (must, guidance)
+27. **Enforcement and accountability.** checkable promises beat good intentions, and one table keeps the audit cheap. (must, hook)

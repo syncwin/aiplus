@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 -I \"${CLAUDE_PLUGIN_ROOT}/scripts/stop_check.py\" 2>/dev/null || python -I \"${CLAUDE_PLUGIN_ROOT}/scripts/stop_check.py\"",
+            "command": "python3 -I \"${CLAUDE_PLUGIN_ROOT}/scripts/contract_check.py\" 2>/dev/null || python -I \"${CLAUDE_PLUGIN_ROOT}/scripts/contract_check.py\"",
             "timeout": 10
           }
         ]

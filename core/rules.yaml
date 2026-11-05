@@ -27,3 +27,4 @@ rules:
   - {id: 24, title: Verify clarify smallest diff, level: must, enforce: guidance}
   - {id: 25, title: Cheapest tool first, level: should, enforce: guidance}
   - {id: 26, title: Security first, level: must, enforce: guidance}
+  - {id: 27, title: Enforcement and accountability, level: must, enforce: hook}

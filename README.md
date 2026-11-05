@@ -10,9 +10,12 @@ Keeps every Claude session efficient: lead model plans and reviews, cheap subage
 core/                 platform-neutral rules (rules.md, rules.yaml): the single source
 adapters/claude/      the Claude plugin (.claude-plugin, skills, hooks, scripts, evals)
 adapters/README.md    how to add another platform
+tests/                run `python tests/test_contract_check.py`
 scripts/build_adapters.py   regenerates adapter files from core
 .claude-plugin/marketplace.json   points to adapters/claude
 ```
+
+`core/contracts.md` specifies `contract.yaml`, the evidence a plugin or skill can require.
 
 Edit rules in `core/`, then run `python scripts/build_adapters.py` (`--check` verifies nothing is stale).
 
@@ -43,7 +46,7 @@ Rule 20 (no overengineering) draws its generic ideas (build only what is asked, 
 
 - `adapters/claude/scripts/scan.py`: reads `~/.claude/plugins/installed_plugins.json` and skill folders (local, read-only) and prints a table. No network.
 - `adapters/claude/scripts/reminder.py` (SessionStart): prints `hooks/reminder.txt`.
-- `adapters/claude/scripts/stop_check.py` (Stop): reads the session transcript; once per session may ask for a request ledger; writes a small flag file in the OS temp folder.
+- `adapters/claude/scripts/contract_check.py` (Stop): reads the session transcript and the `contract.yaml` files of installed plugins (local, read-only; never executed); once per session may block with the list of missing evidence; writes a small flag file in the OS temp folder.
 - No connectors, no network, no secrets.
 
 Before a directory submission, add a square listing icon (PNG or JPEG, 512 to 2048 px) named icon in the adapters/claude/.claude-plugin folder.
