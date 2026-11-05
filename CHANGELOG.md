@@ -5,7 +5,7 @@ Newest first.
 ## 0.0.5: 2026-11-06
 
 **Added**
-- Rule 31, surface awareness (must): AI+ detects its surface from the tools it has (Agent tool, hooks, Bash/files) and applies only what that surface supports; never claims delegation, hooks or files where unavailable; on chat and mobile it falls back to guidance only. New `core/surfaces.md` (capability table for terminal, desktop Code tab, cloud/mobile Code, Cowork, chat; sources; dated 2026-11-06), shipped as `references/surfaces.md`.
+- Rule 31, surface awareness (must): AI+ detects its surface from the tools it has (Agent tool, hooks, Bash/files) and applies only what that surface supports; never claims delegation, hooks or files where unavailable; on chat (web, desktop or mobile) it falls back to guidance only. New `core/surfaces.md` (capability table for terminal, desktop Code tab, cloud/mobile Code, Cowork, chat; sources; dated 2026-11-06), shipped as `references/surfaces.md`.
 - Evals 8-10: ambiguous request expects closed, options-based questions; prompt rewrite invents nothing; chat/mobile surface falls back to guidance.
 
 **Changed**
