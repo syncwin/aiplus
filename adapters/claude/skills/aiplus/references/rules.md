@@ -31,3 +31,4 @@ Why behind each rule in SKILL.md, with its level and enforcement. Generated from
 27. **Enforcement and accountability.** checkable promises beat good intentions, and one table keeps the audit cheap. (must, hook)
 28. **Lean prompt crafting.** a clear prompt prevents rework, and showing it costs one short block. (should, guidance)
 29. **Transparency.** the user decides on cost and quality only when the routing is visible. (must, hook)
+30. **Best-value lead model.** quality per dollar is what makes AI affordable for everyone. (should, guidance)

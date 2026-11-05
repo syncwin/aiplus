@@ -30,3 +30,4 @@ rules:
   - {id: 27, title: Enforcement and accountability, level: must, enforce: hook}
   - {id: 28, title: Lean prompt crafting, level: should, enforce: guidance}
   - {id: 29, title: Transparency, level: must, enforce: hook}
+  - {id: 30, title: Best-value lead model, level: should, enforce: guidance}

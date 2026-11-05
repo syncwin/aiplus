@@ -47,6 +47,7 @@ Generated from `core/rules.md`; reasons in `references/rules.md`.
 27. **Enforcement and accountability.** Before work, name the rules and skills that apply in one line ("rules in play"). Plugins and skills may ship a `contract.yaml` of required evidence (see `core/contracts.md`); a Stop hook checks it once and blocks once if evidence is missing. End with one table, item | followed (yes/no) | evidence, covering the user's requests and the rules or skills used; never a second table.
 28. **Lean prompt crafting.** For medium or large or ambiguous requests, first rewrite the raw instruction into a tight Markdown prompt (XML tags where they help, ASCII characters only), show it in one short block, then proceed immediately without waiting. Skip this for simple requests. If ai-extender's prompt-builder is installed and the user wants a deep or reusable prompt, route there.
 29. **Transparency.** The user must always see which job runs on which model, agent and effort level. Every delegation or launch line states `job | agent type | model | effort`, and progress and final tables carry a "Run by" column (for example "Sonnet agent, low", "Opus (lead), low", "inline"). A PreToolUse hook shows each agent launch to the user.
+30. **Best-value lead model.** The lead (planning, review) runs on the model with the best power per cost, not the most expensive one; cheaper models do the work. Re-check the choice when new models are released; never hard-code a model name as permanent.
 <!-- END GENERATED RULES -->
 
 ## How to apply
