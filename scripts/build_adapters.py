@@ -97,6 +97,7 @@ def main():
     write(skill, pre + skill_block(rules) + post, stale)
     write(os.path.join(CLAUDE, "skills", "aiplus", "references", "rules.md"), full_rules(rules), stale)
     write(os.path.join(CLAUDE, "hooks", "reminder.txt"), reminder(rules), stale)
+    write(os.path.join(CLAUDE, "skills", "aiplus", "references", "surfaces.md"), read(os.path.join(CORE, "surfaces.md")), stale)
     for name in ("LICENSE", "CHANGELOG.md"):  # the installed plugin ships only adapters/claude
         write(os.path.join(CLAUDE, name), read(os.path.join(ROOT, name)), stale)
     verb = "stale" if CHECK else "updated"

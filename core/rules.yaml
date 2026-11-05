@@ -31,3 +31,4 @@ rules:
   - {id: 28, title: Lean prompt crafting, level: should, enforce: guidance}
   - {id: 29, title: Transparency, level: must, enforce: hook}
   - {id: 30, title: Best-value lead model, level: should, enforce: guidance}
+  - {id: 31, title: Surface awareness, level: must, enforce: guidance}

@@ -29,6 +29,7 @@ Why behind each rule in SKILL.md, with its level and enforcement. Generated from
 25. **Cheapest tool first.** deterministic tools are faster, cheaper and repeatable. (should, guidance)
 26. **Security first.** a leak or a regression costs far more than any saving. (must, guidance)
 27. **Enforcement and accountability.** checkable promises beat good intentions, and one table keeps the audit cheap. (must, hook)
-28. **Lean prompt crafting.** a clear prompt prevents rework, and showing it costs one short block. (should, guidance)
+28. **Lean prompt crafting.** a faithful, tight prompt prevents rework without altering what the user asked, and closed questions cost one quick answer. (should, guidance)
 29. **Transparency.** the user decides on cost and quality only when the routing is visible. (must, hook)
 30. **Best-value lead model.** quality per dollar is what makes AI affordable for everyone. (should, guidance)
+31. **Surface awareness.** claiming a feature the surface lacks wastes a turn and misleads the user. (must, guidance)
