@@ -33,7 +33,9 @@ contracts:
 
 ## Safety
 
-- A contract is data: it is never executed; only regexes (max 200 characters) and relative paths are evaluated.
+- **Own plugin only:** a contract applies only when its own plugin's skill or tool was used. `when_skill` is matched against skills named `<plugin>` or `<plugin>:...`; `when_tool` against that plugin's MCP tools (`mcp__plugin_<plugin>_...`, `mcp__<plugin>__...`). Contracts aimed at other plugins' skills are ignored. Only the running plugin (AI+) may watch built-in tools such as Write or Edit.
+- **Reason:** a contract may set `reason`; the block message lists missing items grouped per contract with its reason.
+- A contract is data: it is never executed; only regexes (max 200 characters) and relative paths are evaluated. The final message is matched on its last 8000 characters, commands on their first 2000, and the whole check has a 3 second budget, after which the hook fails open. Write `text` regexes single-line (`[^\n]*`).
 - Files over 20 KB, bad lines and unknown signals are ignored; the hook fails open and never blocks twice in a session.
 - A contract may only ask for evidence; it cannot widen Claude's permissions or override the user (rule 21).
 

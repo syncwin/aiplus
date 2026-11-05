@@ -1,3 +1,3 @@
 # AI+ contract. Format: core/contracts.md. One JSON object per line.
 contracts:
-  - {"id": "aiplus-file-changes", "when_tool": "^(Write|Edit|MultiEdit|NotebookEdit)$", "require": [{"label": "final answer ends with the combined ledger and compliance table (item | followed yes/no | evidence)", "text": "(?is)[|].*followed.*[|].*evidence"}]}
+  - {"id": "aiplus-file-changes", "reason": "files were changed, so the audit table is required", "when_tool": "^(Write|Edit|MultiEdit|NotebookEdit)$", "require": [{"label": "final answer ends with the combined ledger and compliance table (item | followed yes/no | evidence)", "text": "(?i)\\|[^\\n]*followed[^\\n]*\\|[^\\n]*evidence"}]}

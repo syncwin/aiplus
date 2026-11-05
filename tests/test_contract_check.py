@@ -107,6 +107,40 @@ class T(unittest.TestCase):
         self.assertIn("bad", out)      # invalid regex counts as not satisfied
         self.assertNotIn("unk", out)   # unknown signal is not checked
 
+    def install(self, name, contract):
+        plug = os.path.join(self.d, name)
+        os.makedirs(plug)
+        with open(os.path.join(plug, "contract.yaml"), "w") as f:
+            f.write("contracts:\n  - " + json.dumps(contract) + "\n")
+        os.makedirs(os.path.join(self.cfg, "plugins"), exist_ok=True)
+        with open(os.path.join(self.cfg, "plugins", "installed_plugins.json"), "w") as f:
+            json.dump({"plugins": {name + "@m": [{"installPath": plug}]}}, f)
+
+    def test_long_pipe_heavy_message_is_fast(self):
+        import time
+        msg = "| a " * 60000 + "followed"
+        t0 = time.time()
+        out, _ = self.run_hook([line(tool("Write"), text(msg))])
+        self.assertLess(time.time() - t0, 5)
+        self.assertIn("block", out)
+
+    def test_contract_for_other_plugin_is_ignored(self):
+        self.install("evil", {"id": "e", "when_skill": "^other:run$", "require": [{"label": "nope", "bash": "zzz"}]})
+        out, _ = self.run_hook([line(tool("Skill", skill="other:run"), text("done"))])
+        self.assertEqual(out, "")
+
+    def test_foreign_builtin_tool_trigger_ignored(self):
+        self.install("evil", {"id": "e", "when_tool": "^Write$", "require": [{"label": "nope", "bash": "zzz"}]})
+        out, _ = self.run_hook([line(tool("Write"), text(TABLE))])
+        self.assertEqual(out, "")
+
+    def test_reason_and_grouping(self):
+        self.install("good", {"id": "g", "reason": "release gate", "when_skill": "^good:go$",
+                              "require": [{"label": "m1", "bash": "zzz"}, {"label": "m2", "bash": "yyy"}]})
+        out, _ = self.run_hook([line(tool("Skill", skill="good:go"), text("done"))])
+        msg = json.loads(out)["reason"]
+        self.assertIn("- g (release gate):\n  - m1\n  - m2", msg)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=1)

@@ -1,10 +1,11 @@
 """Stop hook: check that the evidence promised by installed contracts exists in the transcript.
 
-Finds contract.yaml files (plugin root, skills/*/, own root), keeps the contracts whose
-trigger matches this session, checks each required signal against the transcript and
-blocks ONCE per session, listing what is missing. Stdlib only. Fails open on any error,
-never blocks twice, never executes anything from a contract (regexes and relative
-paths only). See core/contracts.md for the format.
+Finds contract.yaml files (own plugin root, installed plugins' roots and skills/*/), keeps
+the contracts that apply to this session, checks each required signal against the
+transcript and blocks ONCE per session, listing what is missing per contract. Stdlib only.
+Fails open on any error or when over a 3 s time budget, never blocks twice, never
+executes anything from a contract (bounded regexes and relative paths only).
+A contract applies only when its own plugin's skill or tool was used. See core/contracts.md.
 """
 import glob
 import json
@@ -12,35 +13,45 @@ import os
 import re
 import sys
 import tempfile
+import threading
 
-EDIT_TOOLS = r"^(Write|Edit|MultiEdit|NotebookEdit)$"
 MAX_BYTES, MAX_REGEX, MAX_REQ = 20000, 200, 30
-SIGNALS = ("tool", "skill", "bash", "text", "file")
+MAX_TEXT, MAX_CMD, BUDGET_S = 8000, 2000, 3.0
 
 
 def config_home():
     return os.environ.get("CLAUDE_CONFIG_DIR") or os.path.join(os.path.expanduser("~"), ".claude")
 
 
+def plugin_name(root):
+    try:
+        with open(os.path.join(root, ".claude-plugin", "plugin.json"), encoding="utf-8") as f:
+            return str(json.load(f).get("name") or "")
+    except (OSError, ValueError, AttributeError):
+        return ""
+
+
 def contract_paths(own_root=None):
+    """Return [(path, plugin_name, is_own)]: the running plugin first, then installed ones."""
     roots = []
     if own_root:
-        roots.append(own_root)
+        roots.append((own_root, plugin_name(own_root) or os.path.basename(os.path.normpath(own_root)), True))
     try:
         with open(os.path.join(config_home(), "plugins", "installed_plugins.json"), encoding="utf-8") as f:
             plugins = json.load(f).get("plugins", {})
-        for entries in plugins.values():
+        for key, entries in plugins.items():
             for e in entries if isinstance(entries, list) else [entries]:
                 if isinstance(e, dict) and e.get("installPath"):
-                    roots.append(e["installPath"])
+                    roots.append((e["installPath"], str(key).split("@")[0], False))
     except (OSError, ValueError, AttributeError):
         pass
-    found = []
-    for r in roots:
+    found, seen = [], set()
+    for r, name, own in roots:
         for p in [os.path.join(r, "contract.yaml")] + sorted(glob.glob(os.path.join(r, "skills", "*", "contract.yaml"))):
-            p = os.path.normpath(p)
-            if os.path.isfile(p) and p not in found:
-                found.append(p)
+            key = os.path.normcase(os.path.realpath(p))
+            if os.path.isfile(p) and key not in seen:
+                seen.add(key)
+                found.append((os.path.normpath(p), name, own))
     return found
 
 
@@ -61,11 +72,13 @@ def parse_contracts(text):
 
 def load_contracts(paths):
     allc = []
-    for p in paths:
+    for p, name, own in paths:
         try:
             if os.path.getsize(p) <= MAX_BYTES:
                 with open(p, encoding="utf-8") as f:
-                    allc += parse_contracts(f.read())
+                    for c in parse_contracts(f.read()):
+                        c["_plugin"], c["_own"] = name, own
+                        allc.append(c)
         except OSError:
             pass
     return allc
@@ -99,25 +112,37 @@ def facts_from(path):
                 if not isinstance(b, dict):
                     continue
                 if b.get("type") == "tool_use":
-                    name, inp = str(b.get("name", "")), b.get("input") or {}
+                    name, inp = str(b.get("name", ""))[:200], b.get("input") or {}
                     f["tools"].append(name)
                     if name == "Skill":
-                        f["skills"].append(str(inp.get("skill", "")))
+                        f["skills"].append(str(inp.get("skill", ""))[:200])
                     elif name in ("Bash", "PowerShell"):
-                        f["bash"].append(str(inp.get("command", "")))
+                        f["bash"].append(str(inp.get("command", ""))[:MAX_CMD])
                 elif b.get("type") == "text":
                     text += b.get("text", "")
             if text.strip():
                 f["last"] = text
+    f["last"] = f["last"][-MAX_TEXT:]
     return f
 
 
+def own_skill(name, plugin):
+    return name == plugin or name.startswith(plugin + ":")
+
+
+def own_tool(name, plugin, own):
+    """A plugin's own tools; the running plugin may also watch built-in tools."""
+    return own or ("mcp__plugin_%s_" % plugin) in name or ("mcp__%s__" % plugin) in name
+
+
 def applies(c, f):
+    """A contract only applies when its own plugin's skill or tool was used."""
+    plugin, own = c.get("_plugin", ""), bool(c.get("_own"))
     checks = []
     if c.get("when_skill"):
-        checks.append(any(rx(c["when_skill"], s) for s in f["skills"]))
+        checks.append(any(own_skill(s, plugin) and rx(c["when_skill"], s) for s in f["skills"]))
     if c.get("when_tool"):
-        checks.append(any(rx(c["when_tool"], t) for t in f["tools"]))
+        checks.append(any(own_tool(t, plugin, own) and rx(c["when_tool"], t) for t in f["tools"]))
     return any(checks)
 
 
@@ -139,14 +164,24 @@ def satisfied(req, f, cwd):
 
 
 def evaluate(contracts, f, cwd="."):
-    missing = []
+    """Return {contract id: (reason, [missing labels])} for applicable, unmet contracts."""
+    missing = {}
     for c in contracts:
         if not applies(c, f):
             continue
         for req in c["require"][:MAX_REQ]:
             if isinstance(req, dict) and not satisfied(req, f, cwd):
-                missing.append("%s: %s" % (c["id"], req.get("label") or "required evidence"))
+                entry = missing.setdefault(str(c["id"]), (str(c.get("reason") or "")[:200], []))
+                entry[1].append(str(req.get("label") or "required evidence")[:200])
     return missing
+
+
+def render(missing):
+    out = []
+    for cid, (reason, labels) in missing.items():
+        out.append("- %s%s:" % (cid, " (%s)" % reason if reason else ""))
+        out += ["  - " + x for x in labels]
+    return "\n".join(out)
 
 
 def main():
@@ -161,13 +196,23 @@ def main():
     if not tp or not os.path.isfile(tp):
         return
     own = os.environ.get("CLAUDE_PLUGIN_ROOT") or os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
-    missing = evaluate(load_contracts(contract_paths(own)), facts_from(tp), data.get("cwd") or os.getcwd())
+    result = {}
+
+    def work():
+        result["m"] = evaluate(load_contracts(contract_paths(own)), facts_from(tp), data.get("cwd") or os.getcwd())
+
+    t = threading.Thread(target=work, daemon=True)
+    t.start()
+    t.join(BUDGET_S)
+    if t.is_alive():
+        os._exit(0)  # over the time budget: fail open
+    missing = result.get("m")
     if not missing:
         return
     fd = os.open(flag, os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0), 0o600)
     os.close(fd)
     print(json.dumps({"decision": "block", "reason": "AI+ contract check: complete these before saying done, "
-                      "then end with the combined ledger and compliance table:\n- " + "\n- ".join(missing)}))
+                      "then end with the combined ledger and compliance table:\n" + render(missing)}))
 
 
 if __name__ == "__main__":

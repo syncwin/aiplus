@@ -10,6 +10,7 @@ Newest first.
 - `scripts/build_adapters.py` (stdlib, idempotent, `--check`) regenerates the skill rules block, `references/rules.md` and `hooks/reminder.txt` from core.
 - `core/contracts.md`: `contract.yaml` spec for plugins and skills (required evidence with transcript-detectable signals: tool, skill, bash, text, file). AI+ ships an example contract.
 - Stop hook `contract_check.py` (stdlib, fails open, blocks at most once per session) replaces `stop_check.py`; tests in `tests/test_contract_check.py`.
+- Contract hardening: text signals match only the last 8000 characters, 3 s time budget (fail open), contracts apply only when their own plugin is in use, optional per-contract `reason`.
 - Three evals (context hygiene, overrule confirmation, dedicated plugin wins).
 
 **Changed**
