@@ -2,7 +2,7 @@
 
 Keeps every Claude session efficient: lead model plans and reviews, cheap subagents execute, minimal reads, one retry, routing to your installed plugins.
 
-**Version** 0.0.1 - **Author** SyncWin - **License** MIT
+**Version** 0.0.2 - **Author** SyncWin - **License** MIT
 
 ## Skills
 

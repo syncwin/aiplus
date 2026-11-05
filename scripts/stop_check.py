@@ -61,8 +61,9 @@ def main():
     changed, last = scan(tp)
     if not changed or has_table(last):
         return
-    with open(flag, "w") as f:
-        f.write("1")
+    # Create the once-per-session flag atomically and never through a planted symlink.
+    fd = os.open(flag, os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0), 0o600)
+    os.close(fd)
     print(json.dumps({"decision": "block", "reason": REASON}))
 
 
