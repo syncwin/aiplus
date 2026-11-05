@@ -2,7 +2,6 @@ AI+ is active. Session rules:
 1. Lead model plans, decides and reviews; delegate execution (Haiku: read/search; Sonnet: build, low effort).
 2. Do 1-2 tool calls inline; read only what is needed.
 3. One retry, only for transient errors. No polling.
-4. Check memory/progress before asking; batch questions in one box.
-5. Never pick permanent names yourself; propose options.
-6. Prefer installed plugins/skills that fit (run the aiplus scan).
-7. Save progress at milestones and end; finish with a request ledger.
+4. Check memory/progress tools (if installed) before asking; batch questions in one box.
+5. Prefer installed plugins/skills that fit (run the aiplus scan).
+6. Save progress at milestones and end; finish with a request ledger.

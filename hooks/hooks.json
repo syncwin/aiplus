@@ -5,8 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3",
-            "args": ["-I", "${CLAUDE_PLUGIN_ROOT}/scripts/reminder.py"],
+            "command": "python3 -I \"${CLAUDE_PLUGIN_ROOT}/scripts/reminder.py\" 2>/dev/null || python -I \"${CLAUDE_PLUGIN_ROOT}/scripts/reminder.py\"",
             "timeout": 10
           }
         ]
@@ -17,8 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3",
-            "args": ["-I", "${CLAUDE_PLUGIN_ROOT}/scripts/stop_check.py"],
+            "command": "python3 -I \"${CLAUDE_PLUGIN_ROOT}/scripts/stop_check.py\" 2>/dev/null || python -I \"${CLAUDE_PLUGIN_ROOT}/scripts/stop_check.py\"",
             "timeout": 10
           }
         ]
