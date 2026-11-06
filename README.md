@@ -28,6 +28,16 @@ Edit rules in `core/`, then run `python scripts/build_adapters.py` (`--check` ve
 | `aiplus` | Router |
 | `aiplus-handoff` | One condensed handoff file for a new chat |
 
+## Connect Composio
+
+AI+ declares one connector, Composio (`https://connect.composio.dev/mcp`), so tasks can reach apps Claude has no connector for. It ships no account and no key. It is optional: every skill works without it.
+
+1. Install AI+ (below).
+2. Open Customize > Plugins > AI+ > Connectors and choose Connect on Composio (in Claude Code, run `/mcp` and pick it).
+3. Sign in with your own Composio account.
+
+AI+ asks once per connector per task before using it and never sends personal data or secrets without asking. If Composio is already connected at the same address, Claude uses that one.
+
 ## Install
 
 ```

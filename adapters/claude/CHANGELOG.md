@@ -11,7 +11,8 @@ Newest first.
 
 **Added**
 - Skill `aiplus-handoff` (`/aiplus:aiplus-handoff`): writes one condensed, verified, secret-scanned handoff file (`Handoff <date>.md`) and saves progress. Plugin option `outputs_root` sets the outputs folder; falls back to `docs/handoff/`. Routed from the `aiplus` skill. Trigger evals in the skill; docs in `docs/features/aiplus-handoff.md`.
-- Rule 32, use dedicated connectors (should, guidance): when a connected tool fits better than built-ins (TinyFish, Composio), ask once, then use it; no personal data or secrets sent without asking.
+- Rule 32, use dedicated connectors (should, guidance): prefer any dedicated connector available to the session (account-level connectors, MCP servers, Composio tools) when it fits better than built-ins (TinyFish and Composio are examples); ask once per connector per task; no personal data or secrets sent without asking.
+- Composio connector bundled (`core/mcp.json` built into `adapters/claude/.mcp.json`, address only, no keys); the user connects it after install. README section "Connect Composio".
 
 ## 0.0.5: 2026-11-06
 
