@@ -4,7 +4,7 @@ Keeps every Claude session efficient: lead model plans and reviews, cheap subage
 
 **Download:** [aiplus.plugin](https://github.com/syncwin/aiplus/releases/latest/download/aiplus.plugin) (always the latest release)
 
-**Version** 0.0.5 - **Author** SyncWin - **License** MIT
+**Version** 0.1.0 - **Author** SyncWin - **License** MIT
 
 ## Layout
 
@@ -26,6 +26,7 @@ Edit rules in `core/`, then run `python scripts/build_adapters.py` (`--check` ve
 | Skill | Role |
 |---|---|
 | `aiplus` | Router |
+| `aiplus-handoff` | One condensed handoff file for a new chat |
 
 ## Install
 

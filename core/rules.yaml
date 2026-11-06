@@ -32,3 +32,4 @@ rules:
   - {id: 29, title: Transparency, level: must, enforce: hook}
   - {id: 30, title: Best-value lead model, level: should, enforce: guidance}
   - {id: 31, title: Surface awareness, level: must, enforce: guidance}
+  - {id: 32, title: Use dedicated connectors, level: should, enforce: guidance}

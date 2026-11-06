@@ -1,7 +1,7 @@
 {
   "name": "aiplus",
   "displayName": "AI+",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Keeps every Claude session efficient: lead model plans and reviews, cheap subagents execute, minimal reads, one retry, routing to your installed plugins.",
   "license": "MIT",
   "author": {
@@ -9,7 +9,15 @@
   },
   "metadata": {
     "displayName": "AI+",
-    "version": "0.0.5",
+    "version": "0.1.0",
     "author": "SyncWin"
+  },
+  "userConfig": {
+    "outputs_root": {
+      "type": "directory",
+      "title": "Handoff outputs folder",
+      "description": "Root folder for handoff files (a project subfolder is added). Leave empty for the default.",
+      "required": false
+    }
   }
 }

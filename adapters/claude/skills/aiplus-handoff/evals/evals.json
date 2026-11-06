@@ -1,0 +1,11 @@
+{
+  "skill_name": "aiplus-handoff",
+  "evals": [
+    {"id": 1, "prompt": "/aiplus:aiplus-handoff", "expected_output": "Writes one Handoff <date>.md with the ordered sections, a paste-ready Next chat line, and calls save_progress.", "should_trigger": true, "assertions": ["Writes exactly one file named Handoff YYYY-MM-DD.md", "First section is a single paste-ready Next chat line", "Calls save_progress or updates PROGRESS.md"]},
+    {"id": 2, "prompt": "Write a handoff, I am starting a new chat.", "expected_output": "Verifies PR and file facts before writing and marks unverified items.", "should_trigger": true, "assertions": ["Checks PR state with gh or marks it (unverified)", "Contains no transcript text"]},
+    {"id": 3, "prompt": "Context is almost full. Wrap up for a new chat so I do not have to re-explain.", "expected_output": "Writes the handoff and links any previous handoff instead of copying it.", "should_trigger": true, "assertions": ["Links the previous handoff on line 1 if one exists", "Scans the file for secrets"]},
+    {"id": 4, "prompt": "Summarize this article for me in three bullets.", "expected_output": "Does not trigger.", "should_trigger": false, "assertions": ["No handoff file written"]},
+    {"id": 5, "prompt": "Fix the failing test in utils.py.", "expected_output": "Does not trigger.", "should_trigger": false, "assertions": ["No handoff file written"]},
+    {"id": 6, "prompt": "Hand the invoice over to my accountant by email.", "expected_output": "Does not trigger; unrelated to session handoff.", "should_trigger": false, "assertions": ["No handoff file written"]}
+  ]
+}

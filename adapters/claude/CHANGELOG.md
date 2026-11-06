@@ -7,6 +7,12 @@ Newest first.
 **Added**
 - GitHub Actions workflow `release-plugin.yml` builds `aiplus.plugin` and attaches it to each release for a one-click download link (README).
 
+## 0.1.0: 2026-11-06
+
+**Added**
+- Skill `aiplus-handoff` (`/aiplus:aiplus-handoff`): writes one condensed, verified, secret-scanned handoff file (`Handoff <date>.md`) and saves progress. Plugin option `outputs_root` sets the outputs folder; falls back to `docs/handoff/`. Routed from the `aiplus` skill. Trigger evals in the skill; docs in `docs/features/aiplus-handoff.md`.
+- Rule 32, use dedicated connectors (should, guidance): when a connected tool fits better than built-ins (TinyFish, Composio), ask once, then use it; no personal data or secrets sent without asking.
+
 ## 0.0.5: 2026-11-06
 
 **Added**
