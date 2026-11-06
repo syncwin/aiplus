@@ -2,6 +2,8 @@
 
 Keeps every Claude session efficient: lead model plans and reviews, cheap subagents execute, minimal reads, one retry, routing to your installed plugins.
 
+**Download:** [aiplus.plugin](https://github.com/syncwin/aiplus/releases/latest/download/aiplus.plugin) (always the latest release)
+
 **Version** 0.0.5 - **Author** SyncWin - **License** MIT
 
 ## Layout
