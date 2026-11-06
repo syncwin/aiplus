@@ -4,6 +4,8 @@ Writes, for the Claude adapter:
   - the rules block between the BEGIN/END markers in skills/aiplus/SKILL.md
   - skills/aiplus/references/rules.md (the why, level and enforcement per rule)
   - hooks/reminder.txt (the "must" rules, one line each)
+  - .mcp.json (Composio connector, from core/mcp.json)
+  - scripts/screen_text.py + injection_model.json (from core/guardrail)
   - copies of LICENSE and CHANGELOG.md into adapters/claude
 
 Idempotent: files are rewritten only when content changes.
@@ -98,6 +100,9 @@ def main():
     write(os.path.join(CLAUDE, "skills", "aiplus", "references", "rules.md"), full_rules(rules), stale)
     write(os.path.join(CLAUDE, "hooks", "reminder.txt"), reminder(rules), stale)
     write(os.path.join(CLAUDE, "skills", "aiplus", "references", "surfaces.md"), read(os.path.join(CORE, "surfaces.md")), stale)
+    write(os.path.join(CLAUDE, ".mcp.json"), read(os.path.join(CORE, "mcp.json")), stale)  # Composio connector, no keys
+    for name in ("screen_text.py", "injection_model.json"):  # prompt-injection screen for MCP tool output
+        write(os.path.join(CLAUDE, "scripts", name), read(os.path.join(CORE, "guardrail", name)), stale)
     for name in ("LICENSE", "CHANGELOG.md"):  # the installed plugin ships only adapters/claude
         write(os.path.join(CLAUDE, name), read(os.path.join(ROOT, name)), stale)
     verb = "stale" if CHECK else "updated"

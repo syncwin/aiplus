@@ -4,7 +4,7 @@ Keeps every Claude session efficient: lead model plans and reviews, cheap subage
 
 **Download:** [aiplus.plugin](https://github.com/syncwin/aiplus/releases/latest/download/aiplus.plugin) (always the latest release)
 
-**Version** 0.0.5 - **Author** SyncWin - **License** MIT
+**Version** 0.1.0 - **Author** SyncWin - **License** MIT
 
 ## Layout
 
@@ -26,6 +26,21 @@ Edit rules in `core/`, then run `python scripts/build_adapters.py` (`--check` ve
 | Skill | Role |
 |---|---|
 | `aiplus` | Router |
+| `aiplus-handoff` | One condensed handoff file for a new chat |
+
+## Connect Composio
+
+AI+ declares one connector, Composio (`https://connect.composio.dev/mcp`), so tasks can reach apps Claude has no connector for. It ships no account and no key. It is optional: every skill works without it.
+
+1. Install AI+ (below).
+2. Open Customize > Plugins > AI+ > Connectors and choose Connect on Composio (in Claude Code, run `/mcp` and pick it).
+3. Sign in with your own Composio account.
+
+AI+ asks once per connector per task before using it and never sends personal data or secrets without asking. If Composio is already connected at the same address, Claude uses that one.
+
+## Injection guardrail
+
+A PostToolUse hook screens output from MCP tools (connectors such as Composio) with a small local model. Nothing leaves your machine. If output looks like a prompt injection, Claude is warned to treat it as data and ask you first. It is silent when clean, never blocks if Python is missing, and is a screen, not a verdict. Remove the `PostToolUse` entry in `hooks/hooks.json` to turn it off.
 
 ## Install
 

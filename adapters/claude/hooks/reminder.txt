@@ -1,4 +1,4 @@
-AI+ is active. Core rules (all 31 in the aiplus skill; the user may overrule one only after explicit confirmation):
+AI+ is active. Core rules (all 32 in the aiplus skill; the user may overrule one only after explicit confirmation):
 4. Read minimal. Use search, line ranges and excerpts; never read whole files or folders when a slice answers.
 5. One retry. Retry once, only for a clear transient error (timeout, 5xx); otherwise stop and report; never poll in loops.
 8. Never pick permanent names. For plugins, skills, repos, files the user keeps or public identifiers, propose options and use what the user confirms; temporary names are fine.
