@@ -2,6 +2,15 @@
 
 Newest first.
 
+## 0.2.0: 2026-11-06
+
+**Added**
+- Skill `aiplus-setup` (`/aiplus:aiplus-setup`): detects surface and stack, asks one question round, creates only missing project files (AGENTS.md, CLAUDE.md importing @AGENTS.md, README, CHANGELOG, .gitignore, optional CI with SHA-pinned actions, license, reviewer agent, check script, .mcp.json, private GitHub repo after explicit yes). Templates in `assets/`; docs in `docs/features/aiplus-setup.md`; routed from `aiplus`.
+
+**Changed**
+- Rule 33 added (should): research before building; cite official docs and secure practice; never guess.
+- Rule 31 extended: match the surface (Code: files, git, hooks; desktop/web: artifacts, connectors, projects; mobile: short answers, links).
+
 ## Unreleased
 
 **Added**

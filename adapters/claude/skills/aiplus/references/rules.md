@@ -34,3 +34,4 @@ Why behind each rule in SKILL.md, with its level and enforcement. Generated from
 30. **Best-value lead model.** quality per dollar is what makes AI affordable for everyone. (should, guidance)
 31. **Surface awareness.** claiming a feature the surface lacks wastes a turn and misleads the user. (must, guidance)
 32. **Use dedicated connectors.** a purpose-built connector is faster and more reliable than improvising, and outside services must not receive private data unasked. (should, guidance)
+33. **Research before building.** guessed configs go stale or insecure, and a short lookup is cheaper than a rework. (should, guidance)

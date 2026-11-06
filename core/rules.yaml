@@ -33,3 +33,4 @@ rules:
   - {id: 30, title: Best-value lead model, level: should, enforce: guidance}
   - {id: 31, title: Surface awareness, level: must, enforce: guidance}
   - {id: 32, title: Use dedicated connectors, level: should, enforce: guidance}
+  - {id: 33, title: Research before building, level: should, enforce: guidance}

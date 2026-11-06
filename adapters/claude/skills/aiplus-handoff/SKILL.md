@@ -4,7 +4,7 @@ description: >
   Writes ONE condensed handoff file so a fresh chat continues without re-explaining. Use on "/aiplus:aiplus-handoff", "write a handoff", "wrap up for a new chat", "hand this off", "summarize where we are so I can start a new chat", or when the context window is nearly full (rule 16).
 license: MIT
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   displayName: "AI+ Handoff"
   author: "SyncWin"
 ---

@@ -1,0 +1,15 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # Pin every action to a full commit SHA: uses: owner/action@<40-char-sha> # vX.Y.Z
+      - uses: actions/checkout@{{SHA}} # {{version}}
+      - run: {{scripts/check or lint and test commands}}
