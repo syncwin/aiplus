@@ -94,6 +94,31 @@
         "States which capability is unavailable on this surface",
         "Offers a lean plan or a prompt to run in Claude Code instead"
       ]
+    },
+    {
+      "id": 11,
+      "prompt": "I need you to refactor the auth module, add tests for the login flow, update the README, check the CI config for problems, and tell me which dependencies are outdated. Also see whether the docs match the code and fix whatever is stale.",
+      "expected_output": "Shows one short tight prompt block first, then proceeds.",
+      "assertions": [
+        "Shows a tight rewritten prompt block before working",
+        "Changes no requirement"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "1. Rename the config keys\n2. Migrate the database schema\n3. Update the deploy script\n4. Write release notes",
+      "expected_output": "Shows a tight prompt block, then proceeds.",
+      "assertions": [
+        "Shows a tight rewritten prompt block first"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Fix the typo in README line 3.",
+      "expected_output": "No prompt block for a simple request.",
+      "assertions": [
+        "Does not show a rewritten prompt block"
+      ]
     }
   ]
 }

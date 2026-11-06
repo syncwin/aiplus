@@ -1,0 +1,62 @@
+{
+  "skill_name": "aiplus-setup",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "/aiplus:aiplus-setup",
+      "expected_output": "Detects stack and existing files, asks one batched question round, creates only missing files.",
+      "should_trigger": true,
+      "assertions": [
+        "Asks all questions in one round",
+        "Does not overwrite an existing file"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Set up this project properly, it is a new repo.",
+      "expected_output": "Offers AGENTS.md, CLAUDE.md importing @AGENTS.md, README, CHANGELOG; gh repo create only after explicit yes, private by default.",
+      "should_trigger": true,
+      "assertions": [
+        "CLAUDE.md starts with @AGENTS.md",
+        "No gh repo create before an explicit yes"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Init this project properly: add AGENTS.md and a README.",
+      "expected_output": "Starts setup; a tiny project gets AGENTS.md and README only.",
+      "should_trigger": true,
+      "assertions": [
+        "Creates the smallest set that fits",
+        "Scans created files for secrets"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Fix the failing test in utils.py.",
+      "expected_output": "Does not trigger.",
+      "should_trigger": false,
+      "assertions": [
+        "No project files created"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Write a handoff so I can start a new chat.",
+      "expected_output": "Does not trigger; routes to aiplus-handoff.",
+      "should_trigger": false,
+      "assertions": [
+        "No AGENTS.md created"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Explain what a CHANGELOG is.",
+      "expected_output": "Does not trigger; plain explanation.",
+      "should_trigger": false,
+      "assertions": [
+        "No files created"
+      ]
+    }
+  ]
+}

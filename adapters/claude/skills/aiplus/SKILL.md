@@ -1,10 +1,10 @@
 ---
 name: aiplus
 description: >
-  Efficiency guard for every Claude session: lead model plans and reviews, cheap subagents execute, minimal reads, context hygiene, task budgets, no duplicate work or overengineering, verify before done, security first. Defers to dedicated plugins and skills in their domain. Use at the start of any multi-step task, when delegating to subagents, or when the user asks to save tokens or be efficient.
+  Efficiency guard for every Claude session: shows a tight rewritten prompt for medium or large requests, lead model plans and reviews, cheap subagents execute, minimal reads, task budgets, verify before done, security first. Defers to dedicated plugins and skills in their domain. Always use at the start of every session and every multi-step, long or multi-part request (more than a quick answer), when delegating to subagents, when "/aiplus", "AI+" or "aiplus" is mentioned, or when the user asks to save tokens or be efficient.
 license: MIT
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   displayName: "AI+"
   author: "SyncWin"
 ---
@@ -48,15 +48,18 @@ Generated from `core/rules.md`; reasons in `references/rules.md`.
 28. **Lean prompt crafting.** For medium, large or ambiguous requests, convert the raw request into a fluff-free, tight, non-redundant Markdown prompt, show it in one short block, then proceed at once unless a gap needs a question. Add nothing beyond the original request or directly supporting context; never remove, weaken or change any requirement or intent; remove only redundancy; improve structure with headings, bullets, numbered lists and XML tags where useful; ASCII characters only. If anything is unclear, ask specific closed questions that name the exact gap and offer concrete options with a default, never vague ones like "can you clarify?". Skip this for simple requests; for deep or reusable prompts route to ai-extender's prompt-builder when it is installed.
 29. **Transparency.** The user must always see which job runs on which model, agent and effort level. Every delegation or launch line states `job | agent type | model | effort`, and progress and final tables carry a "Run by" column (for example "Sonnet agent, low", "Opus (lead), low", "inline"). A PreToolUse hook shows each agent launch to the user.
 30. **Best-value lead model.** The lead (planning, review) runs on the model with the best power per cost, not the most expensive one; cheaper models do the work. Re-check the choice when new models are released; never hard-code a model name as permanent.
-31. **Surface awareness.** Detect the surface from your tools (Agent tool, hooks, Bash and files) and apply only what it supports. Never claim delegation, hooks or files where unavailable; on chat (web, desktop or mobile) fall back to guidance only (lean answers, prompt crafting, ledger). See `core/surfaces.md` (shipped as `references/surfaces.md`).
+31. **Surface awareness.** Detect the surface from your tools (Agent tool, hooks, Bash and files) and apply only what it supports. Never claim delegation, hooks or files where unavailable; on chat (web, desktop or mobile) fall back to guidance only (lean answers, prompt crafting, ledger). Match the surface: use what it does best (Code: files, git, hooks; desktop/web: artifacts, connectors, projects; mobile: short answers, links). See `core/surfaces.md` (shipped as `references/surfaces.md`).
 32. **Use dedicated connectors.** When a dedicated connector available to the session (account-level connectors or MCP servers, or tools inside Composio) fits a task better than built-ins, prefer it; for example TinyFish for web search, scraping and browser automation, Composio for apps Claude has no connector for. Ask the user once per connector per task, then use it. Never send personal data or secrets to a connector without asking.
+33. **Research before building.** Check current official docs and widely recommended, secure practice before choosing an approach, template, tool or config; cite the source; mark anything unverified; never guess. Scope the research to what the task needs.
 <!-- END GENERATED RULES -->
 
 ## How to apply
 
+- **Hook:** on Code surfaces a UserPromptSubmit hook (`prompt_nudge.py`) reminds rule 28 for long or multi-request prompts.
 - **Start:** size the task S, M or L (rule 18), load progress (rule 12), say the rules and skills in play in one line (rule 27), and for a medium, large or ambiguous request show the tight rewritten prompt in one block (rule 28).
 - **Routing:** run `python -I "${CLAUDE_PLUGIN_ROOT}/scripts/scan.py"` once per session when a task may fit an installed plugin or skill. For a plugin that is not installed, read `references/recommended.md`.
 - **Handoff:** for "write a handoff" or a nearly full context, run `aiplus-handoff`.
+- **Setup:** for "set up this project" or "new repo", run `aiplus-setup`.
 - **Overrule:** if the user asks to break a rule, state the exception back in one line and proceed only after they confirm (rule 21).
 - **Delegation:** every launch line reads `job | agent type | model | effort`, and tables carry a "Run by" column (rule 29).
 - **End:** one combined table `item | followed (yes/no) | evidence` for requests and rules used (rules 14, 27); save progress (rule 12).
