@@ -1,7 +1,7 @@
 ---
 name: aiplus
 description: >
-  Efficiency guard for every Claude session: lead model plans and reviews, cheap subagents execute, minimal reads, context hygiene, task budgets, no duplicate work or overengineering, verify before done, security first. Defers to dedicated plugins and skills in their domain. Use at the start of any multi-step task, when delegating to subagents, or when the user asks to save tokens or be efficient.
+  Efficiency guard for every Claude session: shows a tight rewritten prompt for medium or large requests, lead model plans and reviews, cheap subagents execute, minimal reads, task budgets, verify before done, security first. Defers to dedicated plugins and skills in their domain. Always use at the start of every session and every multi-step, long or multi-part request (more than a quick answer), when delegating to subagents, when "/aiplus", "AI+" or "aiplus" is mentioned, or when the user asks to save tokens or be efficient.
 license: MIT
 metadata:
   version: 0.2.0
@@ -55,6 +55,7 @@ Generated from `core/rules.md`; reasons in `references/rules.md`.
 
 ## How to apply
 
+- **Hook:** on Code surfaces a UserPromptSubmit hook (`prompt_nudge.py`) reminds rule 28 for long or multi-request prompts.
 - **Start:** size the task S, M or L (rule 18), load progress (rule 12), say the rules and skills in play in one line (rule 27), and for a medium, large or ambiguous request show the tight rewritten prompt in one block (rule 28).
 - **Routing:** run `python -I "${CLAUDE_PLUGIN_ROOT}/scripts/scan.py"` once per session when a task may fit an installed plugin or skill. For a plugin that is not installed, read `references/recommended.md`.
 - **Handoff:** for "write a handoff" or a nearly full context, run `aiplus-handoff`.

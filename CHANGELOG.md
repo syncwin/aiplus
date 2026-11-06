@@ -8,6 +8,8 @@ Newest first.
 - Skill `aiplus-setup` (`/aiplus:aiplus-setup`): detects surface and stack, asks one question round, creates only missing project files (AGENTS.md, CLAUDE.md importing @AGENTS.md, README, CHANGELOG, .gitignore, optional CI with SHA-pinned actions, license, reviewer agent, check script, .mcp.json, private GitHub repo after explicit yes). Templates in `assets/`; docs in `docs/features/aiplus-setup.md`; routed from `aiplus`.
 
 **Changed**
+- README "How AI+ stays on": per-surface table and a compact paste-ready account-instructions block; skill description now says to load it at every session start.
+- Fix: rule 28 (lean prompt crafting) is now a must, so the SessionStart reminder lists it (it was "should" and missing). New UserPromptSubmit hook `prompt_nudge.py` reminds rule 28 for prompts over 400 characters or with 3+ items/questions (fail-open, quiet otherwise). `aiplus` description widened to trigger on any multi-step or long request and on "/aiplus" mentions. Three evals added.
 - Rule 33 added (should): research before building; cite official docs and secure practice; never guess.
 - Rule 31 extended: match the surface (Code: files, git, hooks; desktop/web: artifacts, connectors, projects; mobile: short answers, links).
 
