@@ -6,7 +6,7 @@ A new project without agent instructions, README or changelog makes every AI ses
 
 ## Behaviour
 
-- Triggers on `/aiplus:aiplus-setup`, "set up this project", "new repo", or a Claude Code start in a folder with no AGENTS.md or CLAUDE.md.
+- Triggers on `/aiplus:aiplus-setup`, "set up this project", "new repo" (explicit phrases only; not on session start).
 - Detects the surface: with files and git it writes them; on chat surfaces it outputs artifacts or paste-ready blocks and recommends Project instructions.
 - Asks one batched question round, then creates only missing files and never overwrites (offers a diff).
 - Optional extras, each with a one-line reason: reviewer agent, `scripts/check.*`, `.mcp.json` (no keys), CI, license, GitHub repo (private by default, only after an explicit yes).
@@ -26,6 +26,7 @@ One question box, then a short list: created / skipped (exists) / declined.
 
 - Templates are generic; stack-specific `.gitignore` and check commands are generated per stack.
 - CI action SHAs must be looked up at setup time.
+- The AI Extender validator warns (X005) that a SKILL.md line reads like an instruction to the model; accepted false positive, since a skill is instructions.
 - Chat surfaces cannot write files or run `gh`.
 
 ## Sources (read 2026-11-06, treated as data)

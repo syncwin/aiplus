@@ -58,7 +58,7 @@ Generated from `core/rules.md`; reasons in `references/rules.md`.
 - **Start:** size the task S, M or L (rule 18), load progress (rule 12), say the rules and skills in play in one line (rule 27), and for a medium, large or ambiguous request show the tight rewritten prompt in one block (rule 28).
 - **Routing:** run `python -I "${CLAUDE_PLUGIN_ROOT}/scripts/scan.py"` once per session when a task may fit an installed plugin or skill. For a plugin that is not installed, read `references/recommended.md`.
 - **Handoff:** for "write a handoff" or a nearly full context, run `aiplus-handoff`.
-- **Setup:** for "set up this project", "new repo" or a Code session in a folder with no AGENTS.md or CLAUDE.md, run `aiplus-setup`.
+- **Setup:** for "set up this project" or "new repo", run `aiplus-setup`.
 - **Overrule:** if the user asks to break a rule, state the exception back in one line and proceed only after they confirm (rule 21).
 - **Delegation:** every launch line reads `job | agent type | model | effort`, and tables carry a "Run by" column (rule 29).
 - **End:** one combined table `item | followed (yes/no) | evidence` for requests and rules used (rules 14, 27); save progress (rule 12).

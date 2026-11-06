@@ -1,7 +1,7 @@
 ---
 name: aiplus-setup
 description: >
-  Sets up a project with best-practice agent and repo files: AGENTS.md, CLAUDE.md, README, CHANGELOG, feature docs, .gitignore, optional CI, license, agents, check script, connectors, GitHub repo. Use on "/aiplus:aiplus-setup", "set up this project", "new repo", "init this project properly", "add AGENTS.md", or when a Claude Code session starts in a folder with no AGENTS.md or CLAUDE.md.
+  Sets up a project with best-practice agent and repo files: AGENTS.md, CLAUDE.md, README, CHANGELOG, feature docs, .gitignore, optional CI, license, agents, check script, connectors, GitHub repo. Use on "/aiplus:aiplus-setup", "set up this project", "new repo", "init this project properly", or "add AGENTS.md". Not for handoff files (aiplus-handoff).
 license: MIT
 metadata:
   version: 0.2.0

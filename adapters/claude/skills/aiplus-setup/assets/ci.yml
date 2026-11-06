@@ -12,4 +12,6 @@ jobs:
     steps:
       # Pin every action to a full commit SHA: uses: owner/action@<40-char-sha> # vX.Y.Z
       - uses: actions/checkout@{{SHA}} # {{version}}
+        with:
+          persist-credentials: false
       - run: {{scripts/check or lint and test commands}}

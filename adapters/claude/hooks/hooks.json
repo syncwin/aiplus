@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 -I \"${CLAUDE_PLUGIN_ROOT}/scripts/reminder.py\" 2>/dev/null || python -I \"${CLAUDE_PLUGIN_ROOT}/scripts/reminder.py\"",
+            "command": "p=python3; command -v python3 >/dev/null 2>&1 || p=python; \"$p\" -I \"${CLAUDE_PLUGIN_ROOT}/scripts/reminder.py\"",
             "timeout": 10
           }
         ]
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 -I \"${CLAUDE_PLUGIN_ROOT}/scripts/agent_notice.py\" 2>/dev/null || python -I \"${CLAUDE_PLUGIN_ROOT}/scripts/agent_notice.py\"",
+            "command": "p=python3; command -v python3 >/dev/null 2>&1 || p=python; \"$p\" -I \"${CLAUDE_PLUGIN_ROOT}/scripts/agent_notice.py\"",
             "timeout": 10
           }
         ]
@@ -40,7 +40,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 -I \"${CLAUDE_PLUGIN_ROOT}/scripts/contract_check.py\" 2>/dev/null || python -I \"${CLAUDE_PLUGIN_ROOT}/scripts/contract_check.py\"",
+            "command": "p=python3; command -v python3 >/dev/null 2>&1 || p=python; \"$p\" -I \"${CLAUDE_PLUGIN_ROOT}/scripts/contract_check.py\"",
             "timeout": 10
           }
         ]

@@ -41,7 +41,7 @@ AI+ asks once per connector per task before using it and never sends personal da
 
 ## Injection guardrail
 
-A PostToolUse hook screens output from MCP tools (connectors such as Composio) with a small local model. Nothing leaves your machine. If output looks like a prompt injection, Claude is warned to treat it as data and ask you first. It is silent when clean, never blocks if Python is missing, and is a screen, not a verdict. Remove the `PostToolUse` entry in `hooks/hooks.json` to turn it off.
+A PostToolUse hook screens output from MCP tools (connectors such as Composio) with a small local model. Nothing leaves your machine. If output looks like a prompt injection, Claude is warned to treat it as data and ask you first. It is silent when clean, never blocks if Python is missing, and is a screen, not a verdict. The matcher `mcp__.*` covers every MCP tool in the session on purpose (rule 32 steers work to all connectors), so it also screens servers unrelated to AI+; the cost is a short local scan per call. Remove the `PostToolUse` entry in `hooks/hooks.json` to turn it off.
 
 ## Install
 
