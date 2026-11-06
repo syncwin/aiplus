@@ -2,6 +2,11 @@
 
 Newest first.
 
+## Unreleased
+
+**Added**
+- GitHub Actions workflow `release-plugin.yml` builds `aiplus.plugin` and attaches it to each release for a one-click download link (README).
+
 ## 0.0.5: 2026-11-06
 
 **Added**
