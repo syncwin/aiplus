@@ -23,6 +23,18 @@
         ]
       }
     ],
+    "PostToolUse": [
+      {
+        "matcher": "mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "p=python3; command -v python3 >/dev/null 2>&1 || p=python; \"$p\" -I \"${CLAUDE_PLUGIN_ROOT}/scripts/screen_text.py\" --hook",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [
