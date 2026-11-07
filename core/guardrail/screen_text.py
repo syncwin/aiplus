@@ -10,6 +10,7 @@ Held out at 0.5: precision 0.96 to 0.97; recall 0.96 on jailbreak prompts and 0.
 alarms on held-out skill docs. It is a screen, not a verdict: a flag means read carefully, and a pass proves nothing.
 Exit: 0 nothing flagged; 1 flagged (file or stdin mode); 2 flagged in --hook mode, so Claude sees the warning.
 In --hook mode any error exits 0 (fail open), so a broken screen never blocks work.
+Trusted sources: in --hook mode, tools whose name starts with a prefix in trusted_sources.json (memory, Cloudflare/D1, Novamira, GitHub) are screened at a higher threshold; all other tools keep the default.
 Allowed samples: in files, text between a line `<!-- screen:allow-sample -->` and a line `<!-- /screen:allow-sample -->` is
 skipped, for test prompts that are meant to read like instructions (eval prompts and graders). Only matched pairs count;
 an unclosed start marker allows nothing. Never honored for --stdin or --hook input, so tool output cannot opt out.
@@ -88,9 +89,18 @@ def strings(o, depth=0):
     elif isinstance(o, list):
         for v in o: yield from strings(v, depth)
 
+def trusted(name, cfg=None):
+    """Threshold override for a tool whose name starts with a trusted prefix in trusted_sources.json, else None. Fails to None."""
+    try:
+        cfg = cfg or json.loads((HERE / "trusted_sources.json").read_text(encoding="utf-8"))
+        if any(name.startswith(p) for p in cfg.get("trusted_prefixes", [])): return float(cfg.get("trusted_threshold", 0.95))
+    except (OSError, ValueError, TypeError, AttributeError): pass
+    return None
+
 def hook(th):
     try:
         d = json.loads(sys.stdin.read(20_000_000) or "{}")
+        th = max(th, trusted(str(d.get("tool_name", ""))) or 0)
         text = "\n\n".join(strings(d.get("tool_response", d.get("tool_output", ""))))[:300_000]
         hits = flagged(text, th, strip_code=False, prose_only=True)
         if not hits: return 0

@@ -2,6 +2,15 @@
 
 Newest first.
 
+## 0.3.0: 2026-11-07
+
+**Added**
+- Rule 34 (should): skills that run scripts copy them once per session to `./tools/` and run from there; no `~/.claude` or `/root/.claude` path in shell commands. `aiplus` routing step now follows it.
+- `references/model-routing.md`: role to model-tier table (tiers, no fixed model names).
+
+**Changed**
+- Fix: the MCP-output injection screen flagged ordinary output from memory, Cloudflare/D1, Novamira and GitHub tools. Those tool-name prefixes (list in `scripts/trusted_sources.json`) are now screened at threshold 0.95; every other tool keeps 0.5.
+
 ## 0.2.0: 2026-11-06
 
 **Added**

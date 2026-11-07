@@ -101,7 +101,7 @@ def main():
     write(os.path.join(CLAUDE, "hooks", "reminder.txt"), reminder(rules), stale)
     write(os.path.join(CLAUDE, "skills", "aiplus", "references", "surfaces.md"), read(os.path.join(CORE, "surfaces.md")), stale)
     write(os.path.join(CLAUDE, ".mcp.json"), read(os.path.join(CORE, "mcp.json")), stale)  # Composio connector, no keys
-    for name in ("screen_text.py", "injection_model.json"):  # prompt-injection screen for MCP tool output
+    for name in ("screen_text.py", "injection_model.json", "trusted_sources.json"):  # prompt-injection screen for MCP tool output
         write(os.path.join(CLAUDE, "scripts", name), read(os.path.join(CORE, "guardrail", name)), stale)
     for name in ("LICENSE", "CHANGELOG.md"):  # the installed plugin ships only adapters/claude
         write(os.path.join(CLAUDE, name), read(os.path.join(ROOT, name)), stale)

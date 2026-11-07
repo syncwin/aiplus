@@ -51,13 +51,14 @@ Generated from `core/rules.md`; reasons in `references/rules.md`.
 31. **Surface awareness.** Detect the surface from your tools (Agent tool, hooks, Bash and files) and apply only what it supports. Never claim delegation, hooks or files where unavailable; on chat (web, desktop or mobile) fall back to guidance only (lean answers, prompt crafting, ledger). Match the surface: use what it does best (Code: files, git, hooks; desktop/web: artifacts, connectors, projects; mobile: short answers, links). See `core/surfaces.md` (shipped as `references/surfaces.md`).
 32. **Use dedicated connectors.** When a dedicated connector available to the session (account-level connectors or MCP servers, or tools inside Composio) fits a task better than built-ins, prefer it; for example TinyFish for web search, scraping and browser automation, Composio for apps Claude has no connector for. Ask the user once per connector per task, then use it. Never send personal data or secrets to a connector without asking.
 33. **Research before building.** Check current official docs and widely recommended, secure practice before choosing an approach, template, tool or config; cite the source; mark anything unverified; never guess. Scope the research to what the task needs.
+34. **Scripts run from the working folder.** A skill that runs scripts copies them once per session into the working folder (for example `./tools/`) and runs them from there; never put a `/root/.claude` or `~/.claude` path in a shell command, since cloud sessions cannot see them.
 <!-- END GENERATED RULES -->
 
 ## How to apply
 
 - **Hook:** on Code surfaces a UserPromptSubmit hook (`prompt_nudge.py`) reminds rule 28 for long or multi-request prompts.
 - **Start:** size the task S, M or L (rule 18), load progress (rule 12), say the rules and skills in play in one line (rule 27), and for a medium, large or ambiguous request show the tight rewritten prompt in one block (rule 28).
-- **Routing:** run `python -I "${CLAUDE_PLUGIN_ROOT}/scripts/scan.py"` once per session when a task may fit an installed plugin or skill. For a plugin that is not installed, read `references/recommended.md`.
+- **Routing:** once per session copy `scan.py` from the plugin's `scripts` folder to `./tools/` and run `python -I ./tools/scan.py` (rule 34; never put a plugin or `~/.claude` path in the shell command) when a task may fit an installed plugin or skill. For a plugin that is not installed, read `references/recommended.md`.
 - **Handoff:** for "write a handoff" or a nearly full context, run `aiplus-handoff`.
 - **Setup:** for "set up this project" or "new repo", run `aiplus-setup`.
 - **Overrule:** if the user asks to break a rule, state the exception back in one line and proceed only after they confirm (rule 21).
