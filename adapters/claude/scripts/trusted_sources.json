@@ -1,0 +1,12 @@
+{
+  "_note": "Tool-name prefixes whose output is ordinary first-party data (database rows, memory, CMS, GitHub). Their output is screened at trusted_threshold instead of the default 0.5, so only blatant injections are flagged. Any other tool keeps the default. Edit this list to add or remove sources.",
+  "trusted_threshold": 0.95,
+  "trusted_prefixes": [
+    "mcp__memory__",
+    "mcp__cloudflare",
+    "mcp__Novamira",
+    "mcp__mcp-adapter",
+    "mcp__github__",
+    "mcp__plugin_github_github__"
+  ]
+}
