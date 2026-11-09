@@ -2,6 +2,12 @@
 
 Newest first.
 
+## 0.4.2: 2026-11-09
+
+**Added**
+- Python check: when no working Python 3 is found, the session-start hook tells Claude to explain why AI+ needs it and offer to install it (only after the user confirms). The skill covers chat surfaces with three-line steps or a ready prompt for Claude Code.
+- README "Requirements": Python 3.9+, what needs it, install steps per OS.
+
 ## 0.4.1: 2026-11-09
 
 **Changed**

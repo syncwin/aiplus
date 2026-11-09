@@ -43,6 +43,12 @@ AI+ asks once per connector per task before using it and never sends personal da
 
 A PostToolUse hook screens output from MCP tools (connectors such as Composio) with a small local model. Nothing leaves your machine. If output looks like a prompt injection, Claude is warned to treat it as data and ask you first. It is silent when clean, never blocks if Python is missing, and is a screen, not a verdict. The matcher `mcp__.*` covers every MCP tool in the session on purpose (rule 32 steers work to all connectors), so it also screens servers unrelated to AI+; the cost is a short local scan per call. Remove the `PostToolUse` entry in `hooks/hooks.json` to turn it off.
 
+## Requirements
+
+- **Python 3.9 or newer** for the full set of features: the agent notice, prompt nudge, end-of-turn evidence check, connector injection screen and plugin scan are Python scripts. The rules, the session-start reminder and the skills work without it, so AI+ never breaks; those extras just switch off.
+- Install: Windows `winget install -e --id Python.Python.3.12` (or python.org, tick "Add to PATH"); macOS `brew install python`; Linux `sudo apt install python3`.
+- You do not need to check yourself: when Python is missing, AI+ says so at session start and offers to install it (only after you confirm). On claude.ai chat it gives these steps or a prompt to paste into Claude Code.
+
 ## Install
 
 ```
