@@ -15,7 +15,7 @@ Why behind each rule in SKILL.md, with its level and enforcement. Generated from
 11. **Right-size.** the user decides on cost before it is spent, extra code and output are paid for twice (now and in maintenance), and rework is the largest hidden cost. (must, guidance)
 12. **User can overrule.** rules serve the user, yet an accidental override must not slip through. (must, guidance)
 13. **Security first.** a leak or a regression costs far more than any saving. (must, guidance)
-14. **Accountability.** the user sees at a glance what was actually done, checkable promises beat good intentions, and one table keeps the audit cheap. (must, hook)
+14. **Accountability and enforcement.** the user sees at a glance what was actually done, checkable promises beat good intentions, and one table keeps the audit cheap. (must, hook)
 15. **Lean prompt crafting.** a faithful, tight prompt prevents rework without altering what the user asked, and closed questions cost one quick answer. (must, guidance)
 16. **Surface fit.** claiming a feature the surface lacks wastes a turn and misleads the user, and home-folder paths fail on cloud and chat surfaces and trigger permission prompts. (must, guidance)
 17. **Research before building.** guessed configs go stale or insecure, and a short lookup is cheaper than a rework. (should, guidance)
