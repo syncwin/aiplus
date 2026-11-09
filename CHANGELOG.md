@@ -2,6 +2,11 @@
 
 Newest first.
 
+## 0.4.3: 2026-11-09
+
+**Changed**
+- Plugin README expanded (what it does, how to use it, Python requirement) so the Claude directory accepts it (README_TRIVIAL). Original sentence kept.
+
 ## 0.4.2: 2026-11-09
 
 **Added**
