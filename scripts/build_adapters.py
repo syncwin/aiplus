@@ -19,7 +19,7 @@ ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),
 CORE = os.path.join(ROOT, "core")
 CLAUDE = os.path.join(ROOT, "adapters", "claude")
 BEGIN, END = "<!-- BEGIN GENERATED RULES (scripts/build_adapters.py) -->", "<!-- END GENERATED RULES -->"
-META = re.compile(r"-\s*\{id:\s*(\d+),\s*title:\s*(.+?),\s*level:\s*(must|should),\s*enforce:\s*(guidance|hook)\s*\}\s*$")
+META = re.compile(r"-\s*\{id:\s*(\d+),\s*title:\s*(.+?),\s*level:\s*(must|should),\s*enforce:\s*(guidance|hook)(?:,\s*was:\s*\[[\d,\s]*\])?\s*\}\s*$")
 RULE = re.compile(r"^(\d+)\.\s+\*\*(.+?)\*\*\s+(.*?)\s+\*Why:\*\s+(.*)$")
 
 

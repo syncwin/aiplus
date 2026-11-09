@@ -2,7 +2,7 @@
 
 ## Context
 
-A long chat loses its state when it ends or the context fills. Re-explaining costs tokens and drops decisions. AI+ rule 16 already suggests a new chat with a handoff summary; this skill produces that summary as one verified file.
+A long chat loses its state when it ends or the context fills. Re-explaining costs tokens and drops decisions. AI+ rule 10 already suggests a new chat with a handoff summary; this skill produces that summary as one verified file.
 
 ## Behaviour
 
