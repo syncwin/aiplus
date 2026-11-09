@@ -1,6 +1,6 @@
 # Claude surfaces: what works where
 
-Researched 2026-11-06 from official Anthropic pages (treated as data). Re-check before relying on a cell; "?" means the docs do not state it. Used by rule 31.
+Researched 2026-11-06 from official Anthropic pages (treated as data). Re-check before relying on a cell; "?" means the docs do not state it. Used by rule 16.
 
 | Capability | CC terminal / IDE | Desktop Code tab (local) | Code on web / mobile Code tab (cloud) | Cowork (desktop; web/mobile beta) | Chat (web, desktop, iOS/Android) |
 |---|---|---|---|---|---|

@@ -58,7 +58,7 @@ AI+ applies on its own; you never have to mention it. The strongest mechanism pe
 
 | Surface | What keeps it on | Your one-time step |
 |---|---|---|
-| Claude Code (terminal, IDE, desktop Code tab) | SessionStart hook injects the must-rules on start, resume, clear and compact; UserPromptSubmit hook nudges rule 28 on long prompts; the skill description says to load it always | Install the plugin |
+| Claude Code (terminal, IDE, desktop Code tab) | SessionStart hook injects the must-rules on start, resume, clear and compact; UserPromptSubmit hook nudges rule 15 on long prompts; the skill description says to load it always | Install the plugin |
 | Cowork | Plugin skills (description loads it); plugin hooks load | Enable the plugin (Customize > Plugins) |
 | Chat (web, desktop, mobile) | No hooks run. Account preferences are the always-on path; the skill description helps when the plugin is enabled | Paste the block below once into Settings > Profile > Preferences, and enable the plugin |
 | A chat Project | Project instructions apply to every chat in it | Paste the same block into the Project instructions |
@@ -81,7 +81,7 @@ AI+ (always on, every chat; load the `aiplus` skill if installed):
 
 ## Credits
 
-Rule 20 (no overengineering) draws its generic ideas (build only what is asked, prefer built-in and existing tools, never trim security, validation or accessibility) from the MIT-licensed Ponytail skill. No text or code is copied.
+Rule 11 (no overengineering) draws its generic ideas (build only what is asked, prefer built-in and existing tools, never trim security, validation or accessibility) from the MIT-licensed Ponytail skill. No text or code is copied.
 
 ## Companion prompt
 

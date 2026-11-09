@@ -11,11 +11,11 @@ metadata:
 
 # AI+ Setup
 
-Anyone gets a sound project start. Smallest set of files that earns its place (rule 20): create nothing speculative.
+Anyone gets a sound project start. Smallest set of files that earns its place (rule 11): create nothing speculative.
 
 ## 1. Detect
 
-- Surface (rule 31): files and git available (Claude Code CLI, desktop Code tab) -> write files. Chat (claude.ai web, desktop chat, mobile) -> no local files: output each file as a downloadable artifact or a paste-ready block, and recommend Project instructions for the AGENTS.md text.
+- Surface (rule 16): files and git available (Claude Code CLI, desktop Code tab) -> write files. Chat (claude.ai web, desktop chat, mobile) -> no local files: output each file as a downloadable artifact or a paste-ready block, and recommend Project instructions for the AGENTS.md text.
 - Stack: manifest files (`package.json`, `pubspec.yaml`, `pyproject.toml`, `Cargo.toml`, `go.mod`, `composer.json`). Existing files: list which of the set below already exist. Git state and remote.
 
 ## 2. Ask once
@@ -43,7 +43,7 @@ Never overwrite. If a file exists, show a diff of the proposed change and ask. T
 
 A tiny project (script, notes, one-file tool) gets AGENTS.md + README.md only.
 
-## Research first (rule 33)
+## Research first (rule 17)
 
 Before writing a stack-specific file (`.gitignore`, CI steps, check script, license text), look up current official docs or `gh ... --help`, scoped to what this project needs; mark anything unverified.
 

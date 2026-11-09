@@ -40,9 +40,9 @@ One question box, then a short list: created / skipped (exists) / declined.
 - Claude Code MCP: https://code.claude.com/docs/en/mcp (project `.mcp.json`, `type: http` with `url`; use `${VAR}` for secrets, never literal keys).
 - Unverified: stack-specific `.gitignore` contents (generated from the detected stack at setup, check against github.com/github/gitignore), license texts (use choosealicense.com / SPDX), `gh repo create` flags (check `gh repo create --help` before running).
 
-## Related fix (same release): rule 28 not shown
+## Related fix (same release): rule 28 (now rule 15) not shown
 
-Root cause: rule 28 was level "should", and the SessionStart reminder lists only "must" rules, so Claude never saw it at start; the `aiplus` description was narrow; chat surfaces run no hooks, so only the description and account instructions apply, and the account instructions did not mention rule 28. Fix: rule 28 is a must; a UserPromptSubmit hook nudges on long prompts; description widened; account instructions state the rule with an example. Sources: https://code.claude.com/docs/en/skills (the description in context decides loading; truncated at 1,536 chars; include phrases users say) and https://code.claude.com/docs/en/hooks (UserPromptSubmit input has `prompt`; stdout on exit 0 is added as context).
+Root cause: rule 28 (now rule 15) was level "should", and the SessionStart reminder lists only "must" rules, so Claude never saw it at start; the `aiplus` description was narrow; chat surfaces run no hooks, so only the description and account instructions apply, and the account instructions did not mention rule 28. Fix: rule 28 is a must; a UserPromptSubmit hook nudges on long prompts; description widened; account instructions state the rule with an example. Sources: https://code.claude.com/docs/en/skills (the description in context decides loading; truncated at 1,536 chars; include phrases users say) and https://code.claude.com/docs/en/hooks (UserPromptSubmit input has `prompt`; stdout on exit 0 is added as context).
 
 ## History
 

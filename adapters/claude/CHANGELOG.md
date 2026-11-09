@@ -2,6 +2,40 @@
 
 Newest first.
 
+## 0.4.0: 2026-11-09
+
+**Changed**
+- The 34 rules are merged into 17. Nothing was removed: every instruction, threshold, example and "why" of the old rules is kept in the merged rule or its reason. A merged rule's level is the strongest level of its sources, and its enforcement the union. Rule numbers changed; `core/rules.yaml` lists the old numbers per rule (`was`), and rule references in the skills, hook text, docs and `prompt_nudge.py` now use the new numbers.
+- `scripts/build_adapters.py` accepts the optional `was: [..]` field in `core/rules.yaml`.
+
+Old to new rule map:
+
+| New | Rule | Old rules merged |
+|---|---|---|
+| 1 | Model routing | 1, 2, 3, 13, 30 |
+| 2 | Transparency | 29 |
+| 3 | Lean context | 4, 17, 19, 25 (cheapest tool first) |
+| 4 | One retry | 5, 25 (stop and ask when blocked) |
+| 5 | Know before asking | 6, 7, 24 (clarify early) |
+| 6 | Never pick permanent names | 8 |
+| 7 | Log improvement ideas | 9 |
+| 8 | Clear output | 10, 22 |
+| 9 | Use what is installed | 11, 15, 23, 32 |
+| 10 | Continuity | 12, 16 |
+| 11 | Right-size | 18, 20, 24 (verify, smallest diff, offer a rule) |
+| 12 | User can overrule | 21 |
+| 13 | Security first | 26 |
+| 14 | Accountability | 14, 27 |
+| 15 | Lean prompt crafting | 28 |
+| 16 | Surface fit | 31, 34 |
+| 17 | Research before building | 33 |
+
+## 0.3.1: 2026-11-09
+
+**Changed**
+- Fix: on Windows every hook failed silently when `python3` was the Microsoft Store stub, so AI+ never loaded on its own. Hooks now try `python3`, `python` and `py` and use the first that runs.
+- The session-start reminder no longer needs Python (plain text), and it now tells Claude to invoke the `aiplus` skill before its first reply, so AI+ starts without a reminder.
+
 ## 0.3.0: 2026-11-07
 
 **Added**
