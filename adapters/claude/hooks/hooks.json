@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "p=python3; command -v python3 >/dev/null 2>&1 || p=python; \"$p\" -I \"${CLAUDE_PLUGIN_ROOT}/scripts/reminder.py\"",
+            "command": "head -n 20 \"${CLAUDE_PLUGIN_ROOT}/hooks/reminder.txt\" 2>/dev/null; exit 0",
             "timeout": 10
           }
         ]
@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "p=python3; command -v python3 >/dev/null 2>&1 || p=python; \"$p\" -I \"${CLAUDE_PLUGIN_ROOT}/scripts/prompt_nudge.py\"",
+            "command": "for c in python3 python py; do \"$c\" -c \"\" >/dev/null 2>&1 && exec \"$c\" -I \"${CLAUDE_PLUGIN_ROOT}/scripts/prompt_nudge.py\"; done; exit 0",
             "timeout": 10
           }
         ]
@@ -28,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "p=python3; command -v python3 >/dev/null 2>&1 || p=python; \"$p\" -I \"${CLAUDE_PLUGIN_ROOT}/scripts/agent_notice.py\"",
+            "command": "for c in python3 python py; do \"$c\" -c \"\" >/dev/null 2>&1 && exec \"$c\" -I \"${CLAUDE_PLUGIN_ROOT}/scripts/agent_notice.py\"; done; exit 0",
             "timeout": 10
           }
         ]
@@ -40,7 +40,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "p=python3; command -v python3 >/dev/null 2>&1 || p=python; \"$p\" -I \"${CLAUDE_PLUGIN_ROOT}/scripts/screen_text.py\" --hook",
+            "command": "for c in python3 python py; do \"$c\" -c \"\" >/dev/null 2>&1 && exec \"$c\" -I \"${CLAUDE_PLUGIN_ROOT}/scripts/screen_text.py\" --hook; done; exit 0",
             "timeout": 15
           }
         ]
@@ -51,7 +51,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "p=python3; command -v python3 >/dev/null 2>&1 || p=python; \"$p\" -I \"${CLAUDE_PLUGIN_ROOT}/scripts/contract_check.py\"",
+            "command": "for c in python3 python py; do \"$c\" -c \"\" >/dev/null 2>&1 && exec \"$c\" -I \"${CLAUDE_PLUGIN_ROOT}/scripts/contract_check.py\"; done; exit 0",
             "timeout": 10
           }
         ]

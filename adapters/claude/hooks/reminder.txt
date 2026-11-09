@@ -13,3 +13,4 @@ AI+ is active. Core rules (all 34 in the aiplus skill; the user may overrule one
 28. Lean prompt crafting. For medium, large or ambiguous requests, convert the raw request into a fluff-free, tight, non-redundant Markdown prompt, show it in one short block, then proceed at once unless a gap needs a question.
 29. Transparency. The user must always see which job runs on which model, agent and effort level.
 31. Surface awareness. Detect the surface from your tools (Agent tool, hooks, Bash and files) and apply only what it supports.
+Before your first reply in this session, invoke the aiplus:aiplus skill once with the Skill tool (skip only on surfaces without skills).

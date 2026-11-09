@@ -2,6 +2,12 @@
 
 Newest first.
 
+## 0.3.1: 2026-11-09
+
+**Changed**
+- Fix: on Windows every hook failed silently when `python3` was the Microsoft Store stub, so AI+ never loaded on its own. Hooks now try `python3`, `python` and `py` and use the first that runs.
+- The session-start reminder no longer needs Python (plain text), and it now tells Claude to invoke the `aiplus` skill before its first reply, so AI+ starts without a reminder.
+
 ## 0.3.0: 2026-11-07
 
 **Added**

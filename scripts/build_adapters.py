@@ -67,6 +67,7 @@ def reminder(rules):
     must = [r for r in rules if r["level"] == "must"]
     out = ["AI+ is active. Core rules (all %d in the aiplus skill; the user may overrule one only after explicit confirmation):" % len(rules)]
     out += ["%d. %s %s" % (r["id"], r["head"], first_sentence(r["text"])) for r in must]
+    out.append("Before your first reply in this session, invoke the aiplus:aiplus skill once with the Skill tool (skip only on surfaces without skills).")
     return "\n".join(out) + "\n"
 
 
