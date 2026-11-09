@@ -2,6 +2,14 @@
 
 Newest first.
 
+## 0.4.1: 2026-11-09
+
+**Changed**
+- Restored nuance lost in the 0.4.0 merge (found by an independent clause-by-clause review):
+  - Rule 14 again says always end with the item | followed | evidence table (old 27); after file changes it is required (old 14). Title back to "Accountability and enforcement".
+  - Rule 1 keeps both "strongest model" (old 1) and "best power per cost" (old 30).
+  - Parts that were "should" before the merge are tagged "(should)" inline in rules 3, 5, 9 and 16, so no rule became stricter or weaker.
+
 ## 0.4.0: 2026-11-09
 
 **Changed**

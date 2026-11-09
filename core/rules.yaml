@@ -14,7 +14,7 @@ rules:
   - {id: 11, title: Right-size, level: must, enforce: guidance, was: [18, 20, 24]}
   - {id: 12, title: User can overrule, level: must, enforce: guidance, was: [21]}
   - {id: 13, title: Security first, level: must, enforce: guidance, was: [26]}
-  - {id: 14, title: Accountability, level: must, enforce: hook, was: [14, 27]}
+  - {id: 14, title: Accountability and enforcement, level: must, enforce: hook, was: [14, 27]}
   - {id: 15, title: Lean prompt crafting, level: must, enforce: guidance, was: [28]}
   - {id: 16, title: Surface fit, level: must, enforce: guidance, was: [31, 34]}
   - {id: 17, title: Research before building, level: should, enforce: guidance, was: [33]}
