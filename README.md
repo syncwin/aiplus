@@ -50,7 +50,7 @@ A PostToolUse hook screens output from MCP tools (connectors such as Composio) w
 /plugin install aiplus@aiplus
 ```
 
-Start with `/aiplus`, or let it load when a multi-step task begins. Requires Python 3 (`python3` on PATH) for the hooks and scan; without it the hooks fail without blocking.
+Start with `/aiplus`, or let it load when a multi-step task begins. The session-start reminder needs nothing installed. The other hooks and scan use Python 3 and find it on their own (`python3`, `python` or `py`, skipping the Windows Store stub); without Python they skip without blocking.
 
 ## How AI+ stays on
 
