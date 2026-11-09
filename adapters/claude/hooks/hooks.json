@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "head -n 20 \"${CLAUDE_PLUGIN_ROOT}/hooks/reminder.txt\" 2>/dev/null; exit 0",
+            "command": "head -n 20 \"${CLAUDE_PLUGIN_ROOT}/hooks/reminder.txt\" 2>/dev/null; for c in python3 python py; do \"$c\" -c \"\" >/dev/null 2>&1 && exit 0; done; echo \"AI+ setup: Python 3 was not found. Before other work, tell the user in one line why AI+ needs it (the agent notice, prompt nudge, end-of-turn evidence check, connector injection screen and plugin scan run on Python; the core rules work without it), then ask whether to install it now: Windows: winget install -e --id Python.Python.3.12 ; macOS: brew install python ; Linux: sudo apt install python3 . Install only after a clear yes, then verify with python --version.\"; exit 0",
             "timeout": 10
           }
         ]
