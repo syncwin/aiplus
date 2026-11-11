@@ -4,4 +4,4 @@ Recommend one only when the task needs it and it is not installed. Offer the ins
 
 | Plugin | Use for | Source |
 |---|---|---|
-| ai-extender | Build, update, audit and package Claude plugins and skills | github syncwin/ai-extender |
+| aiaddon | Build, update, audit and package Claude plugins and skills | github syncwin/aiaddon |
