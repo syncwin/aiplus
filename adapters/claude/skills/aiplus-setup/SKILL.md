@@ -1,12 +1,8 @@
 ---
 name: aiplus-setup
 description: >
-  Sets up a project with best-practice agent and repo files: AGENTS.md, CLAUDE.md, README, CHANGELOG, feature docs, .gitignore, optional CI, license, agents, check script, connectors, GitHub repo. Use on "/aiplus:aiplus-setup", "set up this project", "new repo", "init this project properly", or "add AGENTS.md". Not for handoff files (aiplus-handoff).
+  Use when the user says "/aiplus:aiplus-setup", "set up this project", "new repo", "init this project properly" or "add AGENTS.md". Sets up a project with best-practice agent and repo files: AGENTS.md, CLAUDE.md, README, CHANGELOG, feature docs, .gitignore, optional CI, license, agents, check script, connectors, GitHub repo. Not for handoff files (aiplus-handoff).
 license: MIT
-metadata:
-  version: 0.2.0
-  displayName: "AI+ Setup"
-  author: "SyncWin"
 ---
 
 # AI+ Setup
@@ -15,7 +11,7 @@ Anyone gets a sound project start. Smallest set of files that earns its place (r
 
 ## 1. Detect
 
-- Surface (rule 16): files and git available (Claude Code CLI, desktop Code tab) -> write files. Chat (claude.ai web, desktop chat, mobile) -> no local files: output each file as a downloadable artifact or a paste-ready block, and recommend Project instructions for the AGENTS.md text.
+- Surface (rule 16): with files and git (Claude Code CLI, desktop Code tab) the skill writes files. On chat (claude.ai web, desktop chat, mobile) there are no local files, so each file is offered as a downloadable artifact or a paste-ready block, and the AGENTS.md text suits Project instructions.
 - Stack: manifest files (`package.json`, `pubspec.yaml`, `pyproject.toml`, `Cargo.toml`, `go.mod`, `composer.json`). Existing files: list which of the set below already exist. Git state and remote.
 
 ## 2. Ask once
@@ -58,4 +54,4 @@ Research notes and citations: `docs/features/aiplus-setup.md` in the AI+ repo.
 
 ## Scratchpad
 
-End with the request ledger (`../aiplus/references/scratchpad.md`).
+End with the request ledger (`references/scratchpad.md`).

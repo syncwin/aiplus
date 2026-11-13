@@ -14,7 +14,7 @@ A long chat loses its state when it ends or the context fills. Re-explaining cos
 
 ## How it works
 
-1. Resolve the path: plugin option `outputs_root`, else `D:\SyncWin\AI Outputs`, else `docs/handoff/` if that drive is missing.
+1. Resolve the path: plugin option `outputs_root`, else `<default outputs folder>` (named once by the user), else `docs/handoff/` if that folder is missing.
 2. Collect facts, verify them (`gh` for PRs and branches, file listings), mark the rest `(unverified)`.
 3. Write the sections: Next chat, Who and rules, Decisions, State, Done this session, In progress, Next, Waiting on user, Open questions, Files and links.
 4. Scan for `github_pat_`, `ghp_`, `sk-`, `Bearer `, `password=`; stop on a hit.

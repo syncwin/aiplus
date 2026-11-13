@@ -2,6 +2,21 @@
 
 Newest first.
 
+## 0.5.0: 2026-11-13
+
+**Added**
+- Two editions: `main` keeps hooks and scripts for local installs; CI (`.github/workflows/ci.yml`, job `release`) builds a hook-free tree from `adapters/claude` and fast-forward pushes it to the `release` branch for the Anthropic plugin directory. The directory edition has no `hooks/`, `scripts/`, `.mcp.json`, `contract.yaml`, evals or prompt JSON.
+- Routing table in the `aiplus` router skill (`| Order | Trigger phrases | Skill | Then |`) for `aiplus-handoff` and `aiplus-setup`, with tie-break, default question and Skill-tool loading text; `evals/router/cases.json`.
+- "Without hooks" section in the `aiplus` skill: the rule 15 prompt block, the `job | agent | model | effort` line, the end-of-turn evidence table and the connector injection flag are done by the model itself when hooks are absent.
+- Public safety: `.gitignore` preset, `PUBLIC-SAFETY.md`, `.env.example`, `.public-safety-allow` (one old history hit, commit cd90fa3).
+
+**Changed**
+- Skill frontmatter is only `name`, `description`, `license`; version, author and company live in `.claude-plugin/plugin.json`. All versions are 0.5.0, which also fixes the 0.4.x drift (README said 0.3.0, skills 0.2.0, the plugin copy of this changelog stopped at 0.4.0).
+- `aiplus-handoff` no longer names an absolute drive path: the default outputs folder is a placeholder the user names once, else `docs/handoff/`.
+- Rule 16 and the routing step no longer name a home-folder path (R002).
+- `aiplus-handoff` and `aiplus-setup` carry their own `references/scratchpad.md` (S023).
+- `scripts/build_adapters.py` also copies `PUBLIC-SAFETY.md` and `.gitignore` into `adapters/claude`.
+
 ## 0.4.3: 2026-11-09
 
 **Changed**

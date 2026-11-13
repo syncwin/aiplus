@@ -4,7 +4,7 @@ Keeps every Claude session efficient: lead model plans and reviews, cheap subage
 
 **Download:** [aiplus.plugin](https://github.com/syncwin/aiplus/releases/latest/download/aiplus.plugin) (always the latest release)
 
-**Version** 0.3.0 - **Author** SyncWin - **License** MIT
+**Version** 0.5.0 - **Author** SyncWin - **License** MIT
 
 ## Layout
 
@@ -20,6 +20,11 @@ scripts/build_adapters.py   regenerates adapter files from core
 `core/contracts.md` specifies `contract.yaml`, the evidence a plugin or skill can require.
 
 Edit rules in `core/`, then run `python scripts/build_adapters.py` (`--check` verifies nothing is stale).
+
+## Editions
+
+- **Local (main):** the full plugin with hooks, scripts and the Composio connector, installed from this repo.
+- **Directory (`release` branch):** built by CI (`.github/workflows/ci.yml`, job `release`) from `adapters/claude` without `hooks/`, `scripts/`, `.mcp.json`, `contract.yaml`, evals and prompt data, for the Anthropic plugin directory. The `aiplus` skill's "Without hooks" section covers what the hooks would have done.
 
 ## Skills
 

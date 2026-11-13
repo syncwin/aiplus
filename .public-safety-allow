@@ -1,0 +1,5 @@
+# False positives for scan_secrets.py. Only exact, intentional values, each tied to the file that holds it.
+# Format: <rule>:<path-glob>[:<value-substring>]
+# Git history only (commit cd90fa3, 0.1.0: removed from the tree in 0.5.0, no history rewrite; a folder path, no credential involved):
+drive-path:docs/features/aiplus-handoff.md:D:\SyncWin
+drive-path:adapters/claude/skills/aiplus-handoff/SKILL.md:D:\SyncWin

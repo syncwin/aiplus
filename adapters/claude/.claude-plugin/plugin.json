@@ -1,16 +1,18 @@
 {
   "name": "aiplus",
   "displayName": "AI+",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "description": "Keeps every Claude session efficient: lead model plans and reviews, cheap subagents execute, minimal reads, one retry, routing to your installed plugins.",
   "license": "MIT",
   "author": {
-    "name": "SyncWin"
+    "name": "SyncWin",
+    "company": "SyncWin"
   },
   "metadata": {
     "displayName": "AI+",
-    "version": "0.4.3",
-    "author": "SyncWin"
+    "version": "0.5.0",
+    "author": "SyncWin",
+    "company": "SyncWin"
   },
   "userConfig": {
     "outputs_root": {
