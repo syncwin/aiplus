@@ -2,6 +2,40 @@
 
 Newest first.
 
+## 0.5.0: 2026-11-13
+
+**Added**
+- Two editions: `main` keeps hooks and scripts for local installs; CI (`.github/workflows/ci.yml`, job `release`) builds a hook-free tree from `adapters/claude` and fast-forward pushes it to the `release` branch for the Anthropic plugin directory. The directory edition has no `hooks/`, `scripts/`, `.mcp.json`, `contract.yaml`, evals or prompt JSON.
+- Routing table in the `aiplus` router skill (`| Order | Trigger phrases | Skill | Then |`) for `aiplus-handoff` and `aiplus-setup`, with tie-break, default question and Skill-tool loading text; `evals/router/cases.json`.
+- "Without hooks" section in the `aiplus` skill: the rule 15 prompt block, the `job | agent | model | effort` line, the end-of-turn evidence table and the connector injection flag are done by the model itself when hooks are absent.
+- Public safety: `.gitignore` preset, `PUBLIC-SAFETY.md`, `.env.example`, `.public-safety-allow` (one old history hit, commit cd90fa3).
+
+**Changed**
+- Skill frontmatter is only `name`, `description`, `license`; version, author and company live in `.claude-plugin/plugin.json`. All versions are 0.5.0, which also fixes the 0.4.x drift (README said 0.3.0, skills 0.2.0, the plugin copy of this changelog stopped at 0.4.0).
+- `aiplus-handoff` no longer names an absolute drive path: the default outputs folder is a placeholder the user names once, else `docs/handoff/`.
+- Rule 16 and the routing step no longer name a home-folder path (R002).
+- `aiplus-handoff` and `aiplus-setup` carry their own `references/scratchpad.md` (S023).
+- `scripts/build_adapters.py` also copies `PUBLIC-SAFETY.md` and `.gitignore` into `adapters/claude`.
+
+## 0.4.3: 2026-11-09
+
+**Changed**
+- Plugin README expanded (what it does, how to use it, Python requirement) so the Claude directory accepts it (README_TRIVIAL). Original sentence kept.
+
+## 0.4.2: 2026-11-09
+
+**Added**
+- Python check: when no working Python 3 is found, the session-start hook tells Claude to explain why AI+ needs it and offer to install it (only after the user confirms). The skill covers chat surfaces with three-line steps or a ready prompt for Claude Code.
+- README "Requirements": Python 3.9+, what needs it, install steps per OS.
+
+## 0.4.1: 2026-11-09
+
+**Changed**
+- Restored nuance lost in the 0.4.0 merge (found by an independent clause-by-clause review):
+  - Rule 14 again says always end with the item | followed | evidence table (old 27); after file changes it is required (old 14). Title back to "Accountability and enforcement".
+  - Rule 1 keeps both "strongest model" (old 1) and "best power per cost" (old 30).
+  - Parts that were "should" before the merge are tagged "(should)" inline in rules 3, 5, 9 and 16, so no rule became stricter or weaker.
+
 ## 0.4.0: 2026-11-09
 
 **Changed**

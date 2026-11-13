@@ -6,7 +6,7 @@ Writes, for the Claude adapter:
   - hooks/reminder.txt (the "must" rules, one line each)
   - .mcp.json (Composio connector, from core/mcp.json)
   - scripts/screen_text.py + injection_model.json (from core/guardrail)
-  - copies of LICENSE and CHANGELOG.md into adapters/claude
+  - copies of LICENSE, CHANGELOG.md, PUBLIC-SAFETY.md and .gitignore into adapters/claude
 
 Idempotent: files are rewritten only when content changes.
 Usage: python scripts/build_adapters.py [--check]   (--check exits 1 if anything is stale)
@@ -104,7 +104,7 @@ def main():
     write(os.path.join(CLAUDE, ".mcp.json"), read(os.path.join(CORE, "mcp.json")), stale)  # Composio connector, no keys
     for name in ("screen_text.py", "injection_model.json", "trusted_sources.json"):  # prompt-injection screen for MCP tool output
         write(os.path.join(CLAUDE, "scripts", name), read(os.path.join(CORE, "guardrail", name)), stale)
-    for name in ("LICENSE", "CHANGELOG.md"):  # the installed plugin ships only adapters/claude
+    for name in ("LICENSE", "CHANGELOG.md", "PUBLIC-SAFETY.md", ".gitignore"):  # the installed plugin ships only adapters/claude
         write(os.path.join(CLAUDE, name), read(os.path.join(ROOT, name)), stale)
     verb = "stale" if CHECK else "updated"
     print("%d rules; %s: %s" % (len(rules), verb, ", ".join(stale) if stale else "none"))

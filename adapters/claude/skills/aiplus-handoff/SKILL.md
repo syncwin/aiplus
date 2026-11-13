@@ -1,12 +1,8 @@
 ---
 name: aiplus-handoff
 description: >
-  Writes ONE condensed handoff file so a fresh chat continues without re-explaining. Use on "/aiplus:aiplus-handoff", "write a handoff", "wrap up for a new chat", "hand this off", "summarize where we are so I can start a new chat", or when the context window is nearly full (rule 10).
+  Use when the user says "/aiplus:aiplus-handoff", "write a handoff", "wrap up for a new chat", "hand this off" or "summarize where we are so I can start a new chat", or when the context window is nearly full (rule 10). Writes ONE condensed handoff file so a fresh chat continues without re-explaining.
 license: MIT
-metadata:
-  version: 0.2.0
-  displayName: "AI+ Handoff"
-  author: "SyncWin"
 ---
 
 # AI+ Handoff
@@ -15,8 +11,8 @@ One file, condensed, verified. Never a transcript.
 
 ## Path
 
-1. Outputs root: `${user_config.outputs_root}`. If empty, use `D:\SyncWin\AI Outputs`.
-2. If the root's drive is missing, use `docs/handoff/` in the project.
+1. Outputs root: `${user_config.outputs_root}`. If empty, use `<default outputs folder>` (a folder you name once; ask if none is known).
+2. If the root's drive or folder is missing, use `docs/handoff/` in the project.
 3. File: `<root>\<project>\Handoff <YYYY-MM-DD>.md`. Project = working folder name, else the memory project. Same day twice: append ` 2`.
 4. An older handoff exists: link it on line 1 as "Supersedes: <path>"; do not copy it.
 
@@ -49,4 +45,4 @@ Tables over prose. Sections, in order; omit one only if empty:
 
 ## Scratchpad
 
-End with the request ledger (`../aiplus/references/scratchpad.md`).
+End with the request ledger (`references/scratchpad.md`).

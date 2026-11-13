@@ -1,0 +1,37 @@
+{
+  "_note": "Router cases: expected = the skill the routing table in skills/aiplus/SKILL.md must pick, or 'ask' for the closed question. Checked by route_check.py.",
+  "cases": [
+    {
+      "prompt": "write a handoff so I can continue in a fresh session",
+      "expected": "aiplus-handoff"
+    },
+    {
+      "prompt": "summarize where we are so I can start a new chat",
+      "expected": "aiplus-handoff"
+    },
+    {
+      "prompt": "wrap up for a new chat",
+      "expected": "aiplus-handoff"
+    },
+    {
+      "prompt": "set up this project properly",
+      "expected": "aiplus-setup"
+    },
+    {
+      "prompt": "new repo please, add AGENTS.md and a README",
+      "expected": "aiplus-setup"
+    },
+    {
+      "prompt": "init this folder with best-practice project files",
+      "expected": "aiplus-setup"
+    },
+    {
+      "prompt": "get this project ready for the next person",
+      "expected": "ask"
+    },
+    {
+      "prompt": "finish everything off and tidy it",
+      "expected": "ask"
+    }
+  ]
+}
