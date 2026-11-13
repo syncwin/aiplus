@@ -50,8 +50,14 @@ jobs:
                           continue
                       p = os.path.join(d, f)
                       z.write(p, os.path.relpath(p, root).replace(os.sep, "/"))
+          text_ext = {".md", ".json", ".yaml", ".yml", ".txt"}
+          text_names = {"LICENSE", ".gitignore"}
           with zipfile.ZipFile(out) as z:
-              assert ".claude-plugin/plugin.json" in z.namelist(), "plugin.json missing at zip root"
+              names = z.namelist()
+              assert ".claude-plugin/plugin.json" in names, "plugin.json missing at zip root"
+              bad = [n for n in names if os.path.splitext(n)[1].lower() not in text_ext and os.path.basename(n) not in text_names]
+              assert not bad, "non-text files must not ship: " + ", ".join(bad)
+              assert not [n for n in names if n.split("/")[0] in ("hooks", "scripts") or n == ".mcp.json"], "hooks, scripts and .mcp.json must not ship"
           with open(os.environ.get("GITHUB_OUTPUT", os.devnull), "a") as g:
               g.write("version=" + version + "\n")
           print("built", out, "version", version)

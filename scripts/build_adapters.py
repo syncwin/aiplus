@@ -3,9 +3,8 @@
 Writes, for the Claude adapter:
   - the rules block between the BEGIN/END markers in skills/aiplus/SKILL.md
   - skills/aiplus/references/rules.md (the why, level and enforcement per rule)
-  - hooks/reminder.txt (the "must" rules, one line each)
-  - .mcp.json (Composio connector, from core/mcp.json)
-  - scripts/screen_text.py + injection_model.json (from core/guardrail)
+  - dev/hooks/reminder.txt (the "must" rules, one line each; maintainer-only, not shipped)
+  - dev/scripts/screen_text.py + injection_model.json + trusted_sources.json (from core/guardrail; maintainer-only)
   - copies of LICENSE, CHANGELOG.md, PUBLIC-SAFETY.md and .gitignore into adapters/claude
 
 Idempotent: files are rewritten only when content changes.
@@ -17,7 +16,8 @@ import sys
 
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 CORE = os.path.join(ROOT, "core")
-CLAUDE = os.path.join(ROOT, "adapters", "claude")
+CLAUDE = os.path.join(ROOT, "adapters", "claude")  # the plugin root: text files only
+DEV = os.path.join(ROOT, "dev")  # maintainer-only hooks, scripts and data; never shipped
 BEGIN, END = "<!-- BEGIN GENERATED RULES (scripts/build_adapters.py) -->", "<!-- END GENERATED RULES -->"
 META = re.compile(r"-\s*\{id:\s*(\d+),\s*title:\s*(.+?),\s*level:\s*(must|should),\s*enforce:\s*(guidance|hook)(?:,\s*was:\s*\[[\d,\s]*\])?\s*\}\s*$")
 RULE = re.compile(r"^(\d+)\.\s+\*\*(.+?)\*\*\s+(.*?)\s+\*Why:\*\s+(.*)$")
@@ -99,11 +99,10 @@ def main():
     post = rest.split(END, 1)[1]
     write(skill, pre + skill_block(rules) + post, stale)
     write(os.path.join(CLAUDE, "skills", "aiplus", "references", "rules.md"), full_rules(rules), stale)
-    write(os.path.join(CLAUDE, "hooks", "reminder.txt"), reminder(rules), stale)
+    write(os.path.join(DEV, "hooks", "reminder.txt"), reminder(rules), stale)
     write(os.path.join(CLAUDE, "skills", "aiplus", "references", "surfaces.md"), read(os.path.join(CORE, "surfaces.md")), stale)
-    write(os.path.join(CLAUDE, ".mcp.json"), read(os.path.join(CORE, "mcp.json")), stale)  # Composio connector, no keys
     for name in ("screen_text.py", "injection_model.json", "trusted_sources.json"):  # prompt-injection screen for MCP tool output
-        write(os.path.join(CLAUDE, "scripts", name), read(os.path.join(CORE, "guardrail", name)), stale)
+        write(os.path.join(DEV, "scripts", name), read(os.path.join(CORE, "guardrail", name)), stale)
     for name in ("LICENSE", "CHANGELOG.md", "PUBLIC-SAFETY.md", ".gitignore"):  # the installed plugin ships only adapters/claude
         write(os.path.join(CLAUDE, name), read(os.path.join(ROOT, name)), stale)
     verb = "stale" if CHECK else "updated"

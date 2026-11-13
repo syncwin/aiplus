@@ -6,8 +6,8 @@ import sys
 import unittest
 
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-SCRIPT = os.path.join(ROOT, "adapters", "claude", "scripts", "screen_text.py")
-HOOKS = os.path.join(ROOT, "adapters", "claude", "hooks", "hooks.json")
+SCRIPT = os.path.join(ROOT, "dev", "scripts", "screen_text.py")
+HOOKS = os.path.join(ROOT, "dev", "hooks", "hooks.json")
 
 
 def run(raw):
@@ -38,7 +38,7 @@ class T(unittest.TestCase):
         self.assertEqual(run(payload(blatant, "mcp__memory__recall")).returncode, 2)  # trusted sources still flag blatant attacks
 
     def test_trusted_config_valid(self):
-        cfg = json.load(open(os.path.join(ROOT, "adapters", "claude", "scripts", "trusted_sources.json")))
+        cfg = json.load(open(os.path.join(ROOT, "dev", "scripts", "trusted_sources.json")))
         self.assertTrue(cfg["trusted_prefixes"] and 0.5 < cfg["trusted_threshold"] <= 1)
 
     def test_fails_open(self):

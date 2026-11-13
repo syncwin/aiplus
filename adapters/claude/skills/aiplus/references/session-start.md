@@ -1,16 +1,16 @@
 # Session start (recipe)
 
-Replaces the SessionStart hook (`reminder.py`, `hooks/reminder.txt`) and its Python check. Follow it on the first reply of a session when no AI+ reminder was injected (no line starting "AI+ is active").
+Follow it on the first reply of a session. No hook runs it.
 
 ## Contents
 
-- 1. What the hook did
+- 1. What the reminder says
 - 2. Steps
 - 3. Python
 
-## 1. What the hook did
+## 1. What the reminder says
 
-At session start, resume, clear and compact it printed at most 20 lines: the heading "AI+ is active. Core rules (all 17 in the aiplus skill; the user may overrule one only after explicit confirmation)", then one line per must-level rule (first sentence of each), then an order to invoke the `aiplus:aiplus` skill once with the Skill tool before the first reply (skipped on surfaces without skills).
+At session start, resume, clear and compact, bring to mind at most 20 lines: the heading "AI+ is active. Core rules (all 17 in the aiplus skill; the user may overrule one only after explicit confirmation)", then one line per must-level rule (first sentence of each), then the order to invoke the `aiplus:aiplus` skill once with the Skill tool before the first reply (skipped on surfaces without skills).
 
 ## 2. Steps
 
@@ -21,4 +21,4 @@ At session start, resume, clear and compact it printed at most 20 lines: the hea
 
 ## 3. Python
 
-The hook also checked for Python 3 and offered to install it. The directory edition and these recipes need no Python: do nothing. Only the local edition (with `hooks/`) uses Python, and its own session-start hook asks.
+The plugin is text only and these recipes need no Python: do nothing.

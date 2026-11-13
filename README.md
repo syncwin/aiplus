@@ -4,15 +4,16 @@ Keeps every Claude session efficient: lead model plans and reviews, cheap subage
 
 **Download:** [aiplus.plugin](https://github.com/syncwin/aiplus/releases/latest/download/aiplus.plugin) (always the latest release)
 
-**Version** 0.5.1 - **Author** SyncWin - **License** MIT
+**Version** 0.6.0 - **Author** SyncWin - **License** MIT
 
 ## Layout
 
 ```
 core/                 platform-neutral rules (rules.md, rules.yaml): the single source
-adapters/claude/      the Claude plugin (.claude-plugin, skills, hooks, scripts, evals)
+adapters/claude/      the Claude plugin, text only: .claude-plugin, skills (with recipes), evals, prompts, contract.yaml
+dev/                  maintainer-only hooks, scripts and data (never shipped)
 adapters/README.md    how to add another platform
-tests/                run `python tests/test_contract_check.py`
+tests/                run `python tests/test_recipes.py` (and the other test files)
 scripts/build_adapters.py   regenerates adapter files from core
 .claude-plugin/marketplace.json   points to adapters/claude
 ```
@@ -21,10 +22,11 @@ scripts/build_adapters.py   regenerates adapter files from core
 
 Edit rules in `core/`, then run `python scripts/build_adapters.py` (`--check` verifies nothing is stale).
 
-## Editions
+## One plugin, text only
 
-- **Local (main):** the full plugin with hooks, scripts and the Composio connector, installed from this repo.
-- **Directory (`release` branch):** built by CI (`.github/workflows/ci.yml`, job `release`) from `adapters/claude` without `hooks/`, `scripts/`, `.mcp.json`, `contract.yaml`, evals and prompt data, for the Anthropic plugin directory. Every hook and script has a Markdown recipe in `adapters/claude/skills/aiplus/references/` (`session-start`, `prompt-nudge`, `agent-notice`, `screen-injection`, `evidence-check`, `plugin-scan`) and a required step in the `aiplus` skill ("Hook steps"), so the directory edition keeps the behaviour: Claude does by reading and checking what the hooks do automatically. Differences: the injection screen is a judged checklist instead of a scored model, and the optional Composio connector is not bundled (add it yourself under Customize > Connectors, address `https://connect.composio.dev/mcp`). The Python files stay in this repo as maintainer tooling and the local edition.
+`main` is the public repo and the source for the Anthropic plugin directory. `adapters/claude` is the plugin root and ships only text: skills, references, `evals/`, `prompts/` and `contract.yaml`. It has no hooks, scripts or bundled connector.
+
+Features that used to be hooks are recipes in `adapters/claude/skills/aiplus/references/` (`session-start`, `prompt-nudge`, `agent-notice`, `screen-injection`, `evidence-check`, `plugin-scan`). The `aiplus` skill lists a required step for each ("Required steps"), and Claude follows the recipe by reading and checking. The injection screen is a judged checklist, not a scored model. The Python hook sources and data stay in `dev/` as maintainer tooling and are not shipped.
 
 ## Skills
 
@@ -34,25 +36,17 @@ Edit rules in `core/`, then run `python scripts/build_adapters.py` (`--check` ve
 | `aiplus-handoff` | One condensed handoff file for a new chat |
 | `aiplus-setup` | Best-practice project setup (AGENTS.md, CLAUDE.md, README, CHANGELOG, CI) |
 
-## Connect Composio
+## Optional: Composio connector
 
-AI+ declares one connector, Composio (`https://connect.composio.dev/mcp`), so tasks can reach apps Claude has no connector for. It ships no account and no key. It is optional: every skill works without it.
-
-1. Install AI+ (below).
-2. Open Customize > Plugins > AI+ > Connectors and choose Connect on Composio (in Claude Code, run `/mcp` and pick it).
-3. Sign in with your own Composio account.
-
-AI+ asks once per connector per task before using it and never sends personal data or secrets without asking. If Composio is already connected at the same address, Claude uses that one.
+AI+ bundles no connector. If you want tasks to reach apps Claude has no connector for, add Composio yourself under Customize > Connectors (address `https://connect.composio.dev/mcp`) and sign in with your own account. AI+ asks once per connector per task before using it and never sends personal data or secrets without asking. Every skill works without it.
 
 ## Injection guardrail
 
-A PostToolUse hook screens output from MCP tools (connectors such as Composio) with a small local model. Nothing leaves your machine. If output looks like a prompt injection, Claude is warned to treat it as data and ask you first. It is silent when clean, never blocks if Python is missing, and is a screen, not a verdict. The matcher `mcp__.*` covers every MCP tool in the session on purpose (rule 32 steers work to all connectors), so it also screens servers unrelated to AI+; the cost is a short local scan per call. Remove the `PostToolUse` entry in `hooks/hooks.json` to turn it off.
+Claude screens output from MCP tools and web results as data, following `skills/aiplus/references/screen-injection.md` (rule 13). If output looks like a prompt injection, Claude flags it and asks you first. It is a judged checklist, not a verdict, and nothing leaves your machine.
 
 ## Requirements
 
-- **Python 3.9 or newer** for the local edition's hooks (the directory edition needs none; it follows the recipes): the agent notice, prompt nudge, end-of-turn evidence check, connector injection screen and plugin scan are Python scripts. The rules, the session-start reminder and the skills work without it, so AI+ never breaks; those extras just switch off.
-- Install: Windows `winget install -e --id Python.Python.3.12` (or python.org, tick "Add to PATH"); macOS `brew install python`; Linux `sudo apt install python3`.
-- You do not need to check yourself: when Python is missing, AI+ says so at session start and offers to install it (only after you confirm). On claude.ai chat it gives these steps or a prompt to paste into Claude Code.
+None. The plugin is text only and needs no Python or other install.
 
 ## Install
 
@@ -61,7 +55,7 @@ A PostToolUse hook screens output from MCP tools (connectors such as Composio) w
 /plugin install aiplus@aiplus
 ```
 
-Start with `/aiplus`, or let it load when a multi-step task begins. The session-start reminder needs nothing installed. The other hooks and scan use Python 3 and find it on their own (`python3`, `python` or `py`, skipping the Windows Store stub); without Python they skip without blocking.
+Start with `/aiplus`, or let it load when a multi-step task begins.
 
 ## How AI+ stays on
 
@@ -69,12 +63,12 @@ AI+ applies on its own; you never have to mention it. The strongest mechanism pe
 
 | Surface | What keeps it on | Your one-time step |
 |---|---|---|
-| Claude Code (terminal, IDE, desktop Code tab) | SessionStart hook injects the must-rules on start, resume, clear and compact; UserPromptSubmit hook nudges rule 15 on long prompts; the skill description says to load it always | Install the plugin |
-| Cowork | Plugin skills (description loads it); plugin hooks load | Enable the plugin (Customize > Plugins) |
-| Chat (web, desktop, mobile) | No hooks run. Account preferences are the always-on path; the skill description helps when the plugin is enabled | Paste the block below once into Settings > Profile > Preferences, and enable the plugin |
+| Claude Code (terminal, IDE, desktop Code tab) | The skill description says to load it always; the skill then applies the required steps | Install the plugin |
+| Cowork | Plugin skills (the description loads it) | Enable the plugin (Customize > Plugins) |
+| Chat (web, desktop, mobile) | Account preferences are the always-on path; the skill description helps when the plugin is enabled | Paste the block below once into Settings > Profile > Preferences, and enable the plugin |
 | A chat Project | Project instructions apply to every chat in it | Paste the same block into the Project instructions |
 
-Hooks: SessionStart output is added as context and `additionalContext` is capped at 10,000 characters; UserPromptSubmit receives the `prompt` (https://code.claude.com/docs/en/hooks). Skills: the description is always in context and decides loading (https://code.claude.com/docs/en/skills). Anthropic's pages state no length limit for Profile Preferences (unverified; third parties report about 1,500 characters), so the block is kept near 1,000.
+Skills: the description is always in context and decides loading (https://code.claude.com/docs/en/skills).
 
 Paste-ready account instructions:
 
@@ -100,11 +94,8 @@ Rule 11 (no overengineering) draws its generic ideas (build only what is asked, 
 
 ## What it runs, reads, and sends
 
-Local edition (this repo, `main`); the directory edition runs none of these and follows the recipes instead:
+Nothing runs: the plugin has no hooks, scripts, connectors or network access. Claude follows the recipes using Read and Glob on the Claude config folder and the working folder.
 
-- `adapters/claude/scripts/scan.py`: reads `~/.claude/plugins/installed_plugins.json` and skill folders (local, read-only) and prints a table. No network.
-- `adapters/claude/scripts/reminder.py` (SessionStart): prints `hooks/reminder.txt`.
-- `adapters/claude/scripts/contract_check.py` (Stop): reads the session transcript and the `contract.yaml` files of installed plugins (local, read-only; never executed); once per session may block with the list of missing evidence; writes a small flag file in the OS temp folder.
-- No connectors, no network, no secrets.
+Maintainer tooling in `dev/` (not shipped): `scripts/scan.py` (plugin table), `reminder.py`, `prompt_nudge.py`, `agent_notice.py`, `screen_text.py` and `contract_check.py` with their data, plus `hooks/hooks.json` as a reference for anyone who wants to wire them into their own Claude Code settings.
 
 Before a directory submission, add a square listing icon (PNG or JPEG, 512 to 2048 px) named icon in the adapters/claude/.claude-plugin folder.

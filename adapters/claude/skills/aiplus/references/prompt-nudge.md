@@ -1,10 +1,10 @@
 # Long-prompt nudge (recipe)
 
-Stands in for the UserPromptSubmit hook (`prompt_nudge.py`). Applies to each user message, before work starts.
+Applies to each user message, before work starts. No hook runs it.
 
-## What the hook did
+## What to do
 
-It read the user's prompt and, when the prompt was long or multi-request, printed one line: "AI+ rule 15: show the tight prompt block first, then proceed." Otherwise it stayed silent. It never blocked.
+Read the user's prompt and, when it is long or multi-request, say one line: "AI+ rule 15: show the tight prompt block first, then proceed." Otherwise stay silent. Never block.
 
 ## Triggers
 

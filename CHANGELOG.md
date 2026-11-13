@@ -2,6 +2,19 @@
 
 Newest first.
 
+## 0.6.0: 2026-11-13
+
+One branch: `main` is now both the public repo and the Anthropic plugin directory source. The separate `release` branch and its CI job are gone.
+
+**Removed**
+- Hooks from the plugin: `adapters/claude/hooks/` is gone, and so are `.mcp.json` (the Composio connector is optional and added by the user) and every script and data file in the plugin root. Features are kept as recipes (`skills/aiplus/references/`), not hooks.
+
+**Changed**
+- The Python hook sources, `hooks.json`, `reminder.txt` and the connector sample moved unchanged to the maintainer-only `dev/` folder (`dev/scripts`, `dev/hooks`, `dev/mcp.json`). Tests and `scripts/build_adapters.py` read them there; the generator no longer writes hooks, scripts or `.mcp.json` into the plugin root.
+- The skill's "Hook steps" table is now "Required steps": each step is always required, no hooks run, and the recipes are the method. Rules 2 and 14 are now marked as guidance and no longer claim a hook runs.
+- CI: the `release` job is removed; the checks job validates `adapters/claude` for the directory directly. The release workflow packages the same text-only tree.
+- README, adapters README and plugin README describe one text-only plugin.
+
 ## 0.5.1: 2026-11-13
 
 **Added**

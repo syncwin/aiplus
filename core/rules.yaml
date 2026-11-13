@@ -1,8 +1,8 @@
 # Single source for rule metadata. Rule text lives in rules.md (same numbers).
-# level: must | should      enforce: guidance | hook      was: old rule numbers merged into this one (v0.4.0)
+# level: must | should      enforce: guidance      was: old rule numbers merged into this one (v0.4.0)
 rules:
   - {id: 1, title: Model routing, level: should, enforce: guidance, was: [1, 2, 3, 13, 30]}
-  - {id: 2, title: Transparency, level: must, enforce: hook, was: [29]}
+  - {id: 2, title: Transparency, level: must, enforce: guidance, was: [29]}
   - {id: 3, title: Lean context, level: must, enforce: guidance, was: [4, 17, 19, 25]}
   - {id: 4, title: One retry, level: must, enforce: guidance, was: [5, 25]}
   - {id: 5, title: Know before asking, level: must, enforce: guidance, was: [6, 7, 24]}
@@ -14,7 +14,7 @@ rules:
   - {id: 11, title: Right-size, level: must, enforce: guidance, was: [18, 20, 24]}
   - {id: 12, title: User can overrule, level: must, enforce: guidance, was: [21]}
   - {id: 13, title: Security first, level: must, enforce: guidance, was: [26]}
-  - {id: 14, title: Accountability and enforcement, level: must, enforce: hook, was: [14, 27]}
+  - {id: 14, title: Accountability and enforcement, level: must, enforce: guidance, was: [14, 27]}
   - {id: 15, title: Lean prompt crafting, level: must, enforce: guidance, was: [28]}
   - {id: 16, title: Surface fit, level: must, enforce: guidance, was: [31, 34]}
   - {id: 17, title: Research before building, level: should, enforce: guidance, was: [33]}
