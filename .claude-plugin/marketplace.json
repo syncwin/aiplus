@@ -3,12 +3,15 @@
   "owner": {
     "name": "SyncWin"
   },
+  "metadata": {
+    "description": "AI+ keeps every Claude session efficient: the lead model plans and reviews, cheap subagents execute."
+  },
   "plugins": [
     {
       "name": "aiplus",
       "source": "./adapters/claude",
       "description": "Keeps every Claude session efficient: lead model plans and reviews, cheap subagents execute, minimal reads, one retry, routing to your installed plugins.",
-      "version": "0.5.1"
+      "version": "0.6.0"
     }
   ]
 }

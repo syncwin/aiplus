@@ -7,7 +7,7 @@ import tempfile
 import unittest
 
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-SCRIPT = os.path.join(ROOT, "adapters", "claude", "scripts", "contract_check.py")
+SCRIPT = os.path.join(ROOT, "dev", "scripts", "contract_check.py")
 TABLE = "| item | followed | evidence |\n|---|---|---|\n| fix | yes | tests pass |"
 
 

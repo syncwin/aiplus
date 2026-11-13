@@ -1,14 +1,14 @@
 # Agent launch line (recipe)
 
-Replaces the PreToolUse hook (`agent_notice.py`, tools Agent and Task). Follow it before every delegation.
+Follow it before every delegation (tools Agent and Task). No hook runs it.
 
-## What the hook did
+## What to show
 
-For each Agent or Task call it showed the user one line and changed nothing:
+For each Agent or Task call show the user one line and change nothing:
 
 `AI+ > agent: <description> | type: <subagent type> | model: <model> | effort: <effort>`
 
-Defaults when a field was empty: description "(no description)", type "general-purpose", model "inherited", effort "inherited". Each value had its whitespace collapsed to single spaces and was cut at 120 characters. It ignored every other tool, never blocked and never altered the call.
+Defaults when a field is empty: description "(no description)", type "general-purpose", model "inherited", effort "inherited". Collapse whitespace in each value to single spaces and cut it at 120 characters. Do this for no other tool, never block and never alter the call.
 
 ## Steps
 

@@ -1,19 +1,19 @@
 # End-of-turn evidence check (recipe)
 
-Replaces the Stop hook `contract_check.py` and the AI+ contract file `contract.yaml`. Run it once, just before your final answer, whenever you changed files or used a skill that ships a contract.
+The method for the AI+ contract file `contract.yaml`; no hook runs it. Run it once, just before your final answer, whenever you changed files or used a skill that ships a contract.
 
 ## Contents
 
-- 1. What the hook did
+- 1. What to check
 - 2. AI+ contract (inline)
 - 3. Contracts of other plugins
 - 4. Signals
 - 5. Steps and the final message
 - 6. Limits
 
-## 1. What the hook did
+## 1. What to check
 
-At the end of a turn it loaded contracts (the AI+ one plus the `contract.yaml` files of installed plugins), kept those that applied to the session, checked each required signal against the transcript, and blocked once per session with the missing items, listed per contract with its reason. It never blocked twice, never ran anything from a contract, and failed open on any error or after 3 seconds.
+At the end of a turn, load contracts (the AI+ one plus the `contract.yaml` files of installed plugins), keep those that apply to the session, check each required signal against your own record, and report the missing items once per session, listed per contract with its reason. Never run anything from a contract.
 
 ## 2. AI+ contract (inline)
 
@@ -60,4 +60,4 @@ A requirement with no known signal is met.
 
 ## 6. Limits
 
-The hook read the transcript mechanically; you check from your own record, so a slip is possible. Be strict: unclear evidence counts as missing. The recipe has no time budget; keep the check short.
+You check from your own record, so a slip is possible. Be strict: unclear evidence counts as missing. The recipe has no time budget; keep the check short.

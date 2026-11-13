@@ -6,8 +6,8 @@ import sys
 import unittest
 
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-SCRIPT = os.path.join(ROOT, "adapters", "claude", "scripts", "agent_notice.py")
-HOOKS = os.path.join(ROOT, "adapters", "claude", "hooks", "hooks.json")
+SCRIPT = os.path.join(ROOT, "dev", "scripts", "agent_notice.py")
+HOOKS = os.path.join(ROOT, "dev", "hooks", "hooks.json")
 
 
 def run(raw):
