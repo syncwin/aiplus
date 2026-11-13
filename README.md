@@ -4,7 +4,7 @@ Keeps every Claude session efficient: lead model plans and reviews, cheap subage
 
 **Download:** [aiplus.plugin](https://github.com/syncwin/aiplus/releases/latest/download/aiplus.plugin) (always the latest release)
 
-**Version** 0.5.0 - **Author** SyncWin - **License** MIT
+**Version** 0.5.1 - **Author** SyncWin - **License** MIT
 
 ## Layout
 
@@ -24,7 +24,7 @@ Edit rules in `core/`, then run `python scripts/build_adapters.py` (`--check` ve
 ## Editions
 
 - **Local (main):** the full plugin with hooks, scripts and the Composio connector, installed from this repo.
-- **Directory (`release` branch):** built by CI (`.github/workflows/ci.yml`, job `release`) from `adapters/claude` without `hooks/`, `scripts/`, `.mcp.json`, `contract.yaml`, evals and prompt data, for the Anthropic plugin directory. The `aiplus` skill's "Without hooks" section covers what the hooks would have done.
+- **Directory (`release` branch):** built by CI (`.github/workflows/ci.yml`, job `release`) from `adapters/claude` without `hooks/`, `scripts/`, `.mcp.json`, `contract.yaml`, evals and prompt data, for the Anthropic plugin directory. Every hook and script has a Markdown recipe in `adapters/claude/skills/aiplus/references/` (`session-start`, `prompt-nudge`, `agent-notice`, `screen-injection`, `evidence-check`, `plugin-scan`) and a required step in the `aiplus` skill ("Hook steps"), so the directory edition keeps the behaviour: Claude does by reading and checking what the hooks do automatically. Differences: the injection screen is a judged checklist instead of a scored model, and the optional Composio connector is not bundled (add it yourself under Customize > Connectors, address `https://connect.composio.dev/mcp`). The Python files stay in this repo as maintainer tooling and the local edition.
 
 ## Skills
 
@@ -50,7 +50,7 @@ A PostToolUse hook screens output from MCP tools (connectors such as Composio) w
 
 ## Requirements
 
-- **Python 3.9 or newer** for the full set of features: the agent notice, prompt nudge, end-of-turn evidence check, connector injection screen and plugin scan are Python scripts. The rules, the session-start reminder and the skills work without it, so AI+ never breaks; those extras just switch off.
+- **Python 3.9 or newer** for the local edition's hooks (the directory edition needs none; it follows the recipes): the agent notice, prompt nudge, end-of-turn evidence check, connector injection screen and plugin scan are Python scripts. The rules, the session-start reminder and the skills work without it, so AI+ never breaks; those extras just switch off.
 - Install: Windows `winget install -e --id Python.Python.3.12` (or python.org, tick "Add to PATH"); macOS `brew install python`; Linux `sudo apt install python3`.
 - You do not need to check yourself: when Python is missing, AI+ says so at session start and offers to install it (only after you confirm). On claude.ai chat it gives these steps or a prompt to paste into Claude Code.
 
@@ -99,6 +99,8 @@ Rule 11 (no overengineering) draws its generic ideas (build only what is asked, 
 `prompts/ai.json` is a ready-made form for Prompt Builder. It is delivered next to the package, never inside it. Import it there, fill in the fields, and send it to Claude to start this plugin without typing the request from scratch.
 
 ## What it runs, reads, and sends
+
+Local edition (this repo, `main`); the directory edition runs none of these and follows the recipes instead:
 
 - `adapters/claude/scripts/scan.py`: reads `~/.claude/plugins/installed_plugins.json` and skill folders (local, read-only) and prints a table. No network.
 - `adapters/claude/scripts/reminder.py` (SessionStart): prints `hooks/reminder.txt`.

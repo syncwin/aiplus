@@ -2,6 +2,19 @@
 
 Newest first.
 
+## 0.5.1: 2026-11-13
+
+**Added**
+- Recipes for every hook and script, so the directory edition no longer loses their features: `skills/aiplus/references/session-start.md` (SessionStart reminder and Python check), `prompt-nudge.md` (long or multi-request prompt triggers), `agent-notice.md` (agent launch line), `screen-injection.md` (injection screen: pattern checklist and trusted-source list inline), `evidence-check.md` (Stop check: AI+ contract and the contract format and signals inline) and `plugin-scan.md` (installed plugin and skill table through Glob and Read, no shell paths).
+- `tests/test_recipes.py`: recipes exist, are linked from the skill, carry the same thresholds, trusted prefixes and must-rule numbers as the scripts and `core/rules.yaml`.
+
+**Changed**
+- "Without hooks" and "Hooks" in the `aiplus` skill are now one section, "Hook steps": a table of when each step fires, what the hook does on `main`, the required step and its recipe. On `main` the hook does it automatically and the recipe is the fallback.
+- Rules 2 and 14 say that without hooks the model writes the launch line and runs the evidence check itself.
+- CI `release` job asserts that the six recipes are in the shipped tree.
+- README: the directory edition's differences (judged injection screen, Composio not bundled) are stated; adapters README version fixed.
+- Versions 0.5.1 everywhere.
+
 ## 0.5.0: 2026-11-13
 
 **Added**

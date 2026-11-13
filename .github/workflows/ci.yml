@@ -50,7 +50,8 @@ jobs:
         run: python .checker-tools/dev/aiaddon-review/scripts/scan_secrets.py . --history
 
   release:
-    # Directory edition: adapters/claude without hooks, scripts, .mcp.json, contract.yaml, evals and prompt data.
+    # Directory edition: adapters/claude without hooks, scripts, .mcp.json, contract.yaml, evals and prompt data; the recipes
+    # in skills/aiplus/references/ replace the hooks and scripts.
     name: Update the release branch
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: [checks]
@@ -94,6 +95,9 @@ jobs:
               f.write("\n")
           for gone in ("hooks", "scripts", ".mcp.json"):
               assert not os.path.exists(os.path.join(out, gone)), gone + " must not ship"
+          # Each dropped hook or script has a Markdown recipe that must ship (text, in the skill references).
+          for r in ("session-start", "prompt-nudge", "agent-notice", "screen-injection", "evidence-check", "plugin-scan"):
+              assert os.path.isfile(os.path.join(out, "skills", "aiplus", "references", r + ".md")), r + " recipe must ship"
           print("built", out, "version", m["version"])
           PY
       - name: Validate the shipped tree for the directory (blocking)
