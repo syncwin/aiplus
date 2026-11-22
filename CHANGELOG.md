@@ -2,6 +2,11 @@
 
 Newest first.
 
+## 0.7.1: 2026-11-22
+
+**Changed**
+- aiplus-handoff: new Reference guide section (settled questions, nuances, trade-offs, sources, deadlines, risks, action plan) so a handoff is a self-contained guide a month later.
+
 ## 0.7.0: 2026-11-22
 
 **Added (rules, no new files)**
