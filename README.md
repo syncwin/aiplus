@@ -4,7 +4,7 @@ Keeps every Claude session efficient: lead model plans and reviews, cheap subage
 
 **Download:** [aiplus.plugin](https://github.com/syncwin/aiplus/releases/latest/download/aiplus.plugin) (always the latest release)
 
-**Version** 0.7.0 - **Author** SyncWin - **License** MIT
+**Version** 0.7.1 - **Author** SyncWin - **License** MIT
 
 ## Layout
 

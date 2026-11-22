@@ -31,6 +31,7 @@ Tables over prose. Sections, in order; omit one only if empty:
 | Next | Ordered steps; one item at a time, highest priority first |
 | Waiting on user | Items only the user can do |
 | Open questions | Closed questions with options |
+| Reference guide | Final suggestions, self-contained, so the user can act in a month without re-researching: every question settled and its answer, nuances and trade-offs weighed (chosen vs rejected, why), research findings with sources, deadlines and dates, risks, and a numbered action plan ready to execute |
 | Files and links | ALL of: files, folders, repos, branches, PRs, releases, links, CI workflows, device ids, research outputs, and token file LOCATIONS (never values) |
 
 ## Rules
@@ -41,7 +42,8 @@ Tables over prose. Sections, in order; omit one only if empty:
 - No secrets. After writing, scan the file for `github_pat_`, `ghp_`, `sk-`, `Bearer `, `password=`. On a hit, stop, delete the file, tell the user, and do not echo the value.
 - Save progress: call `save_progress` (memory tools) with a short summary and the file path, `tool` set to `claude-code`. Without memory tools, update `PROGRESS.md`.
 - Never read or write memory for work the user marked separate or private.
-- Tell the user the path and the Next-chat line.
+- Write the Reference guide for a reader with no memory of the chat: plain words, no "as discussed", every term and choice explained once.
+- Tell the user the path and the Next-chat line, and show the Reference guide's action plan in the reply.
 
 ## Scratchpad
 
