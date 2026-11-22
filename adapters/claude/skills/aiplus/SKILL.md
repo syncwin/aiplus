@@ -38,6 +38,7 @@ Generated from `core/rules.md`; reasons in `references/rules.md`.
 - **Start:** size the task S, M or L (rule 11), load progress (rule 10), say the rules and skills in play in one line (rule 14), and for a medium, large or ambiguous request show the tight rewritten prompt in one block (rule 15). The steps in "Required steps" below always apply; `references/session-start.md` and `references/prompt-nudge.md` give the detail.
 - **Routing:** once per session, when a task may fit an installed plugin or skill, build the routing table by following `references/plugin-scan.md` (rule 9). For a plugin that is not installed, read `references/recommended.md`.
 - **No code:** the plugin is text only and no hooks run. The recipes in `references/` are the method and need no Python or other install.
+- **Coding by agents:** for code changes done by delegated agents, follow `references/factory-workflow.md` (rules 4, 9 and 11).
 - **Handoff:** for "write a handoff" or a nearly full context, run `aiplus-handoff`.
 - **Setup:** for "set up this project" or "new repo", run `aiplus-setup`.
 - **Overrule:** if the user asks to break a rule, state the exception back in one line and proceed only after they confirm (rule 12).

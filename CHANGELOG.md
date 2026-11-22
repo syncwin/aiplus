@@ -2,6 +2,11 @@
 
 Newest first.
 
+## 0.7.2: 2026-11-22
+
+**Added**
+- New `references/factory-workflow.md`, linked from the skill: a short, general workflow for coding done by delegated agents (issue with acceptance criteria and tests first, own worktree and branch with a pull request, bounded CI retries, merge gate with human review, optional holdout scenarios, start small). Dedicated development plugins own the detail.
+
 ## 0.7.1: 2026-11-22
 
 **Changed**

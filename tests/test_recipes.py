@@ -7,7 +7,7 @@ import unittest
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 SKILL_DIR = os.path.join(ROOT, "adapters", "claude", "skills", "aiplus")
 REFS = os.path.join(SKILL_DIR, "references")
-NAMES = ("session-start", "prompt-nudge", "agent-notice", "screen-injection", "evidence-check", "plugin-scan")
+NAMES = ("session-start", "prompt-nudge", "agent-notice", "screen-injection", "evidence-check", "plugin-scan", "factory-workflow")
 
 
 def read(*parts):
