@@ -24,19 +24,19 @@ Tables over prose. Sections, in order; omit one only if empty:
 |---|---|
 | Next chat | One paste-ready line: `load_progress <project>, read <this file>, verify State, then do "Next"` |
 | Who and rules | Only standing user rules and preferences learned or confirmed this session |
-| Decisions | Dated; what was chosen and what was rejected |
+| Decisions | Every decision and rule from the chat, dated; chosen and rejected; plus a pointer to the project's Decisions log |
 | State | Repos, branches (last commit, clean or dirty), PRs (status, link), versions, installed tools, key paths, how to run the check that shows the work is healthy |
 | Done this session | Short list |
 | In progress | Who, what, where |
 | Next | Ordered steps; one item at a time, highest priority first |
 | Waiting on user | Items only the user can do |
 | Open questions | Closed questions with options |
-| Files and links | Paths and URLs that matter |
+| Files and links | ALL of: files, folders, repos, branches, PRs, releases, links, CI workflows, device ids, research outputs, and token file LOCATIONS (never values) |
 
 ## Rules
 
 - Leave work in a clean, resumable state (commit or say what is uncommitted) before writing; list what is NOT done and what is unverified so the next chat never declares victory early.
-- Condense. Never paste transcripts or long output.
+- Carry ALL context so a new chat never struggles: nothing decided, named or located in the chat may be missing. Condense wording, not content. Never paste transcripts or long output.
 - Verify before writing: PR and branch states via `gh`, files exist via a listing. Mark anything unchecked `(unverified)`.
 - No secrets. After writing, scan the file for `github_pat_`, `ghp_`, `sk-`, `Bearer `, `password=`. On a hit, stop, delete the file, tell the user, and do not echo the value.
 - Save progress: call `save_progress` (memory tools) with a short summary and the file path, `tool` set to `claude-code`. Without memory tools, update `PROGRESS.md`.
