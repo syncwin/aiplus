@@ -2,6 +2,15 @@
 
 Newest first.
 
+## 0.8.0: 2026-11-23
+
+**Added (rule text, no new rules)**
+- Rule 4: when a permission check blocks an outward action, give the user the exact command; retry once only after explicit allow.
+- Rule 11: verify a reviewer's or worker's claim with one cheap check before acting on or reporting it.
+- Rule 13: secrets go straight from token file to tool, validated without printing, new ones generated into a file; check an old system's pending state and keep a rollback path before replacing it.
+- Rule 14: a message marked "QUEUE" is appended to the single queue list, not started.
+- factory-workflow merge gate: CI finished and passed, branch re-synced with base, conflicts resolved, gate re-run.
+
 ## 0.7.2: 2026-11-22
 
 **Added**
