@@ -4,7 +4,7 @@
 
 | Adapter | Output | Status |
 |---|---|---|
-| `claude` | Claude plugin: skills and recipes, text only | 0.8.0 |
+| `claude` | Claude plugin: skills and recipes, text only | 0.9.0 |
 | `chatgpt` | custom instructions text, or a custom GPT | not started |
 | `gemini` | Gem instructions or GEMINI.md | not started |
 
