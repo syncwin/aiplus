@@ -2,6 +2,13 @@
 
 Newest first.
 
+## 0.9.0: 2026-11-25
+
+**Changed (rule text, no new rules)**
+- Rule 17: the lead and every worker never build from memory; research the latest official docs, PRD, briefs and instructions first (web scraper connector such as TinyFish or docs MCPs for public pages), cite sources, add a "Research first" step to every brief, refuse and re-send once a result that skipped it; private repos use the platform's own authenticated tools, never third-party scrapers.
+- Rule 14: every new mid-session request (not only QUEUE) is appended at once to the single queue file with a number and status, the number is told to the user, the current plan is never dropped, build order is decided afterwards.
+- Rule 1: unchanged, already requires briefs to name skills and the worker to show evidence.
+
 ## 0.8.0: 2026-11-23
 
 **Added (rule text, no new rules)**
